@@ -1733,6 +1733,176 @@
 //
 //}
 
+//#include <iostream>
+//#include <boost/asio.hpp>
+//#include <chrono>
+//boost::asio::io_service io;
+////此地方一定要给时间，否则定时器不起作用
+//boost::asio::deadline_timer timer_(io, boost::posix_time::seconds(0));
+//boost::asio::steady_timer timer1_(io,std::chrono::seconds(0));
+//
+//boost::asio::deadline_timer timer2_(io);
+//boost::asio::steady_timer timer3_(io);
+//
+//int g_begin = 0; 
+//
+//void start_time()
+//{
+//	g_begin = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+//	//此地方expires_at()是从起始时间点开始算
+//	timer_.expires_at(timer_.expires_at() + boost::posix_time::seconds(5));
+//
+//	timer_.async_wait([](const boost::system::error_code& ec) {
+//		if (ec) {
+//			return;
+//		}
+//
+//		auto end = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+//		std::cout << end - g_begin << std::endl;
+//		end = g_begin;
+//		start_time();
+//		});
+//}
+//
+//void start_time1()
+//{
+//	g_begin = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+//	timer1_.expires_at(timer1_.expires_at() + std::chrono::seconds(5));
+//
+//	timer1_.async_wait([](const boost::system::error_code& ec) {
+//		if (ec) {
+//			return;
+//		}
+//
+//		auto end = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+//		std::cout << end - g_begin << std::endl;
+//		end = g_begin;
+//		//定时器时间链
+//		start_time1();
+//		});
+//}
+//
+//void start_time2()
+//{
+//	g_begin = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+//	timer2_.expires_from_now(boost::posix_time::seconds(5));
+//
+//	timer2_.async_wait([](const boost::system::error_code& ec) {
+//		if (ec) {
+//			return;
+//		}
+//
+//		auto end = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+//		std::cout << end - g_begin << std::endl;
+//		end = g_begin;
+//		//定时器时间链
+//		start_time2();
+//		});
+//}
+//
+//void start_time3()
+//{
+//	g_begin = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+//	timer3_.expires_from_now(std::chrono::seconds(5));
+//
+//	timer3_.async_wait([](const boost::system::error_code& ec) {
+//		if (ec) {
+//			return;
+//		}
+//
+//		auto end = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+//		std::cout << end - g_begin << std::endl;
+//		end = g_begin;
+//		//定时器时间链
+//		start_time3();
+//		});
+//}
+//
+//int main()
+//{
+//	//start_time();
+//	//start_time1();
+//	//start_time2();
+//	start_time3();
+//	io.run();
+//}
+
+//#include <iostream>
+//#include <windows.h>
+//
+//void char_to_wchar(const char* ch, std::wstring& w_str)
+//{
+//	wchar_t* wchar;
+//	int len = MultiByteToWideChar(CP_ACP, 0, ch, strlen(ch), NULL, 0);
+//	wchar = new wchar_t[len + 1];
+//	MultiByteToWideChar(CP_ACP, 0, ch, strlen(ch), wchar, len);
+//	wchar[len] = '\0';
+//	w_str = wchar;
+//	delete[]wchar;
+//	wchar = nullptr;
+//}
+//
+//int main()
+//{
+//	std::string str = "111";
+//	std::wstring w_str;
+//	char_to_wchar(str.c_str(), w_str);
+//	int i = 100;
+//}
+
+//#include <iostream>
+//#include <windows.h>
+//
+//class single_application {
+//public:
+//	~single_application() {
+//#ifdef _WIN32_WINNT
+//		ReleaseMutex(mutex_);
+//#endif
+//	}
+//
+//	bool is_runing(const std::string& mutex_name) {
+//#ifdef _WIN32_WINNT
+//		mutex_ = OpenMutexA(MUTEX_ALL_ACCESS, 0, mutex_name.c_str());
+//		if (nullptr == mutex_)
+//		{
+//			mutex_ = CreateMutexA(0, 0, mutex_name.c_str());
+//			return false;
+//		}
+//		else
+//		{
+//			auto out_put = mutex_name + " is running, so exit!\n";
+//			std::cout << out_put << std::endl;
+//			return true;
+//		}
+//#else
+//		std::cout << "has not realize" << std::endl;
+//		return true;
+//#endif
+//	}
+//
+//private:
+//#ifdef _WIN32_WINNT
+//	HANDLE mutex_;
+//#endif
+//
+//};
+//
+//int main()
+//{
+//	single_application single;
+//	if (single.is_runing("ConsoleApplication2"))
+//	{
+//		return 0;
+//	}
+//
+//	while (1)
+//	{
+//	}
+//}
+//
+
+
 #include <iostream>
 
 int main()
