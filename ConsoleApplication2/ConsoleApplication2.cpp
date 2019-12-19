@@ -1902,6 +1902,51 @@
 //}
 //
 
+//#include <iostream>
+//#include <string>
+//#include <chrono>
+//#include <boost/process.hpp>
+//#include <boost/asio.hpp>
+//
+//int main()
+//{
+//	boost::asio::io_service io;
+//	try {
+//		//std::string cmd1 = R"("E:/sort/3dmax2018/3ds Max 2018/3dsmax.exe" -Language=CHS -q -silent -mip -u MAXScript "E:/render_temp_path/output_vray_vrscene1.ms")";
+//		std::string max_path = "E:/sort/3dmax2018/3ds Max 2018/3dsmax.exe";
+//		std::string ms_path = "E:/render_temp_path/output_vray_vrscene1.ms";
+//		std::string cmd1 = "\"" + max_path + "\" -Language=CHS -q -silent -mip -u MAXScript \"" + ms_path + "\"";
+//		boost::process::ipstream out;
+//
+//		boost::process::child c(cmd1,boost::process::std_out > out);
+//
+//		c.wait();
+//		//c.wait_for(std::chrono::seconds(5));
+//		//boost::asio::steady_timer timers(io);
+//		//timers.expires_from_now(std::chrono::seconds(10));
+//		//timers.async_wait([&c](const boost::system::error_code& ec) {
+//		//	if (ec) {
+//		//		return;
+//		//	}
+//
+//		//	if (c.running()){
+//		//		c.terminate();
+//		//	}
+//		//	});
+//
+//
+//		//io.run();
+//
+//
+//		int icode = c.exit_code();
+//	}
+//
+//	catch (std::exception & e) {
+//		std::string str = e.what();
+//	}
+//
+//
+//}
 
 #include <iostream>
 
