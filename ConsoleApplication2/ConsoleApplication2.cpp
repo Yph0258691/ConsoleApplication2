@@ -1913,9 +1913,9 @@
 //	boost::asio::io_service io;
 //	try {
 //		//std::string cmd1 = R"("E:/sort/3dmax2018/3ds Max 2018/3dsmax.exe" -Language=CHS -q -silent -mip -u MAXScript "E:/render_temp_path/output_vray_vrscene1.ms")";
-//		std::string max_path = "E:/sort/3dmax2018/3ds Max 2018/3dsmax.exe";
-//		std::string ms_path = "E:/render_temp_path/output_vray_vrscene1.ms";
-//		std::string cmd1 = "\"" + max_path + "\" -Language=CHS -q -silent -mip -u MAXScript \"" + ms_path + "\"";
+//std::string max_path = "E:/sort/3dmax2018/3ds Max 2018/3dsmax.exe";
+//std::string ms_path = "E:/render_temp_path/output_vray_vrscene1.ms";
+//std::string cmd1 = "\"" + max_path + "\" -Language=CHS -q -silent -mip -u MAXScript \"" + ms_path + "\"";
 //		boost::process::ipstream out;
 //
 //		boost::process::child c(cmd1,boost::process::std_out > out);
@@ -1948,9 +1948,264 @@
 //
 //}
 
-#include <iostream>
+//#include <iostream>
+//#include <boost/process.hpp>
+//#include <string>
+//
+//int main()
+//{
+//	std::vector<std::string>vec;
+//	boost::process::environment evn = boost::this_process::environment();
+//
+//	int size = evn.size();
+//	std::string str = evn.get("ADSK_3DSMAX_SDK_2018");
+//	for (auto str : evn) {
+//		//系统值
+//		std::string strs = str.to_string();
+//		//系统变量
+//		std::string name = str.get_name();
+//		if (!name.empty()){
+//			vec.push_back(str.get_name());
+//			std::cout << name << std::endl;
+//		}
+//		
+//	}
+//
+//
+//
+//	int i = 100;
+//
+//}
 
+//#include <boost/process.hpp>
+//#include <iostream>
+//int main()
+//{
+//	boost::process::ipstream out;
+//	boost::process::child c("ps -ef|grep time2 | grep -v grep |wc -l", boost::process::std_out > out);
+//	for (std::string line; c.running() && std::getline(out, line);) {
+//		std::cout << line << "\n";
+//	}
+//
+//	c.wait();
+//}
+
+//#include <iostream>  
+//using namespace std;
+//
+//#include <boost/program_options.hpp>  
+//namespace po = boost::program_options;
+//
+//int main(int argc, char* argv[])
+//{
+//	//int level;  
+//	po::options_description desc("Allowed options");
+//	desc.add_options()
+//		("help", "produce help message")
+//		//("help,h", "produce help message")  
+//		("compression", po::value<int>(), "set compression level");
+//	//("compression", po::value<int>(&level)->default_value(1), "set compression level");  
+//
+//	po::variables_map vm;
+//	po::store(po::parse_command_line(argc, argv, desc), vm);
+//	po::notify(vm);
+//
+//	if (vm.count("help"))
+//	{
+//		cout << desc << endl;
+//		return 1;
+//	}
+//
+//	if (vm.count("compression"))
+//	{
+//		cout << "compression level was set to " << vm["compression"].as<int>() << "." << endl;
+//		//cout<<"compression level: "<<level<<endl;  
+//	}
+//	else
+//	{
+//		cout << "compression level was not set." << endl;
+//	}
+//
+//	return 0;
+//}
+
+//#include <iostream>  
+//using namespace std;
+//#include <boost/program_options.hpp>  
+//
+//int main(int argc, char* argv[])
+//{
+//	//int level;  
+//	boost::program_options::options_description desc("Allowed options");
+//	desc.add_options()
+//		("help", "produce help message")
+//		//("help,h", "produce help message")  
+//		("compression", boost::program_options::value<int>(), "set compression level");
+//	//("compression", po::value<int>(&level)->default_value(1), "set compression level");  
+//
+//	boost::program_options::variables_map vm;
+//	boost::program_options::store(boost::program_options::parse_command_line(argc, argv, desc), vm);
+//	boost::program_options::notify(vm);
+//
+//	if (vm.count("help"))
+//	{
+//		cout << desc << endl;
+//		return 1;
+//	}
+//
+//	if (vm.count("compression"))
+//	{
+//		cout << "compression level was set to " << vm["compression"].as<int>() << "." << endl;
+//		//cout<<"compression level: "<<level<<endl;  
+//	}
+//	else
+//	{
+//		cout << "compression level was not set." << endl;
+//	}
+//
+//	return 0;
+//}
+//
+//
+//#include<cstdio>
+//#include <string>
+//#include <iostream>
+//int main()
+//{
+//
+//	FILE* fp;
+//	std::string buffer;
+//	fp = popen("ps -ef|grep time2 | grep -v grep |wc -l", "r");
+//	fread(&buffer[0], 1,1, fp);
+//
+//	std::cout << buffer << std::endl;
+//	pclose(fp);
+//}
+
+//#include <iostream>
+//
+////1900 -2049
+//int lunay_info[] =
+//{
+//0x04bd8, 0x04ae0, 0x0a570, 0x054d5, 0x0d260, 0x0d950, 0x16554, 0x056a0, 0x09ad0, 0x055d2,
+//0x04ae0, 0x0a5b6, 0x0a4d0, 0x0d250, 0x1d255, 0x0b540, 0x0d6a0, 0x0ada2, 0x095b0, 0x14977,
+//0x04970, 0x0a4b0, 0x0b4b5, 0x06a50, 0x06d40, 0x1ab54, 0x02b60, 0x09570, 0x052f2, 0x04970,
+//0x06566, 0x0d4a0, 0x0ea50, 0x06e95, 0x05ad0, 0x02b60, 0x186e3, 0x092e0, 0x1c8d7, 0x0c950,
+//0x0d4a0, 0x1d8a6, 0x0b550, 0x056a0, 0x1a5b4, 0x025d0, 0x092d0, 0x0d2b2, 0x0a950, 0x0b557,
+//0x06ca0, 0x0b550, 0x15355, 0x04da0, 0x0a5d0, 0x14573, 0x052d0, 0x0a9a8, 0x0e950, 0x06aa0,
+//0x0aea6, 0x0ab50, 0x04b60, 0x0aae4, 0x0a570, 0x05260, 0x0f263, 0x0d950, 0x05b57, 0x056a0,
+//0x096d0, 0x04dd5, 0x04ad0, 0x0a4d0, 0x0d4d4, 0x0d250, 0x0d558, 0x0b540, 0x0b5a0, 0x195a6,
+//0x095b0, 0x049b0, 0x0a974, 0x0a4b0, 0x0b27a, 0x06a50, 0x06d40, 0x0af46, 0x0ab60, 0x09570,
+//0x04af5, 0x04970, 0x064b0, 0x074a3, 0x0ea50, 0x06b58, 0x055c0, 0x0ab60, 0x096d5, 0x092e0,
+//0x0c960, 0x0d954, 0x0d4a0, 0x0da50, 0x07552, 0x056a0, 0x0abb7, 0x025d0, 0x092d0, 0x0cab5,
+//0x0a950, 0x0b4a0, 0x0baa4, 0x0ad50, 0x055d9, 0x04ba0, 0x0a5b0, 0x15176, 0x052b0, 0x0a930,
+//0x07954, 0x06aa0, 0x0ad50, 0x05b52, 0x04b60, 0x0a6e6, 0x0a4e0, 0x0d260, 0x0ea65, 0x0d530,
+//0x05aa0, 0x076a3, 0x096d0, 0x04bd7, 0x04ad0, 0x0a4d0, 0x1d0b6, 0x0d250, 0x0d520, 0x0dd45,
+//0x0b5a0, 0x056d0, 0x055b2, 0x049b0, 0x0a577, 0x0a4b0, 0x0aa50, 0x1b255, 0x06d20, 0x0ada0
+//};
+//
+////计算方式 
+////4月29天              4
+////0000 0111 1001 0101 0100
+//
+//// 计算该月总天数
+//int getMonthDays(int lunarYeay, int month) {
+//	if ((month > 31) || (month < 0)) {
+//		return 0;
+//	}
+//
+//	// 0X0FFFF[0000 {1111 1111 1111} 1111]中间12位代表12个月，1为大月，0为小月
+//	int bit = 1 << (16 - month);
+//	if (((lunay_info[lunarYeay - 1900] & 0x0FFFF) & bit) == 0) {
+//		return 29;
+//	}else {
+//		return 30;
+//	}
+//}
+//
+////	计算阴历年闰哪个月 1-12 , 没闰传回 0
+//int getLeapMonth(int year) {
+//	//取最后四位
+//	return (int)(lunay_info[year - 1900] & 0x000f);
+//}
+//
+////	计算阴历年闰月多少天
+//int getLeapMonthDays(int year) {
+//	if (getLeapMonth(year) != 0) {
+//		//取最前4位
+//		if ((lunay_info[year - 1900] & 0x0000f0000) == 0) {
+//			return 29;
+//		}else {
+//			return 30;
+//		}
+//	}
+//	else {
+//		return 0;
+//	}
+//}
+//
+//// 计算阴历年的总天数
+//int getYearDays(int year) {
+//	int sum = 29 * 12;
+//	for (int i = 0x8000; i >= 0x8; i >>= 1) {
+//		if ((lunay_info[year - 1900] & 0xfff0 & i) != 0) {
+//			sum++;
+//		}
+//	}
+//
+//	return sum + getLeapMonthDays(year);
+//}
+//
+//
+//
+//int main()
+//{
+//	int index = lunay_info[2020 - 1900];
+//	int i = getLeapMonth(2020);
+//
+//	int day_count = getYearDays(2020);
+//
+//	int leap_month = getLeapMonthDays(2020);
+//}
+
+//#include <iostream>
+//#include <boost/format.hpp>
+//
+//int main()
+//{
+//	std::string max_path = "111";
+//	std::string ss = "22";
+//	//注意要两个%，否则会出错
+//	boost::format f("%1%export_%2%.flag");
+//
+//	f% max_path;
+//	f% ss;
+//	std::string for_str = f.str();
+//
+//}
+
+#include <iostream>
+#include <chrono>
+#include <random>
+std::default_random_engine s;
+
+int get_random(int senconds)
+{
+	//1-9随机数
+	std::uniform_int_distribution<int> u(1, senconds-1);
+	return u(s);
+
+}
 int main()
 {
+	std::int64_t time_stramp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 
+	s.seed(time_stramp);
+	for (int i =0;i<10;i++)
+	{
+		std::cout<< 60+get_random(10) <<std::endl;
+	}
+	
+	int i = 100;
+	
 }
