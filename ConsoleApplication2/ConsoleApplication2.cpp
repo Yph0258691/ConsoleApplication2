@@ -2184,28 +2184,98 @@
 //
 //}
 
+//#include <iostream>
+//#include <chrono>
+//#include <random>
+//std::default_random_engine s;
+//
+//int get_random(int senconds)
+//{
+//	//1-9随机数
+//	std::uniform_int_distribution<int> u(1, senconds-1);
+//	return u(s);
+//
+//}
+//int main()
+//{
+//	std::int64_t time_stramp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+//
+//	s.seed(time_stramp);
+//	for (int i =0;i<10;i++)
+//	{
+//		std::cout<< 60+get_random(10) <<std::endl;
+//	}
+//	
+//	int i = 100;
+//	
+//}
+
+//#include <iostream>
+//#include <random>
+//
+//int rand_value(int min, int max)
+//{
+//	std::random_device rd;   // obtain a random number from hardware
+//	std::mt19937 eng(rd());  // seed the generator
+//	std::uniform_int_distribution<> distr(min, max);  // define the range int型或unsigned int
+//	//std::uniform_real_distribution<float>distr(min, max); //define the range float double long double
+//	return distr(eng);
+//}
+//
+//int main()
+//{
+//	for (int i = 0; i <20; i++) {
+//		std::cout << "第"<<i+1<<"次"<<rand_value(1, 100) << std::endl;
+//	}
+//
+//	int i = 100;
+//}
+
 #include <iostream>
-#include <chrono>
-#include <random>
-std::default_random_engine s;
 
-int get_random(int senconds)
+//判断相等
+template <typename T>
+typename std::enable_if<!std::numeric_limits<T>::is_integer, bool>::type
+equal(T a, T b)
 {
-	//1-9随机数
-	std::uniform_int_distribution<int> u(1, senconds-1);
-	return u(s);
-
-}
-int main()
-{
-	std::int64_t time_stramp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-
-	s.seed(time_stramp);
-	for (int i =0;i<10;i++)
-	{
-		std::cout<< 60+get_random(10) <<std::endl;
+	if (std::fabs(a-b)<1e-6) {
+		return true;
 	}
-	
-	int i = 100;
-	
+		
+	return false;
+}
+
+//判断两个float大小
+template <typename T>
+bool is_big(T a, T b)
+{
+	if (!std::is_same<T,double>::value && !std::is_same<T,float>::value){
+		return false;
+	}
+
+	if (std::fabs(a - b) > 1e-6) {
+		return true;
+	}
+
+	return false;
+}
+
+int main(int argv, char* args[])
+{
+	double d1 = 0.2;
+	double d2 = 1 / std::sqrt(5) / std::sqrt(5);
+
+	float f3 = 1.5f;
+	float f4 = 1.2f;
+	if (is_big("a", "b")){
+		int i = 100;
+	}
+	if (equal(d1,d2)){
+		int i = 100;
+	}
+	std::cout << "d1 = " << d1 << std::endl;
+	std::cout << "d2 = " << d2 << std::endl;
+
+
+	return 0;
 }
