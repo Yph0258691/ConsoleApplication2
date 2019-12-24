@@ -35,5 +35,8 @@
     <ClInclude Include="handler.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="reflect.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

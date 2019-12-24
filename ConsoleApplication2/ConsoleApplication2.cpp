@@ -2231,51 +2231,180 @@
 //	int i = 100;
 //}
 
-#include <iostream>
+//#include <iostream>
+//
+////判断相等
+//template <typename T>
+//typename std::enable_if<!std::numeric_limits<T>::is_integer, bool>::type
+//equal(T a, T b)
+//{
+//	if (std::fabs(a-b)<1e-6) {
+//		return true;
+//	}
+//		
+//	return false;
+//}
+//
+////判断两个float大小
+//template <typename T>
+//bool is_big(T a, T b)
+//{
+//	if (!std::is_same<T,double>::value && !std::is_same<T,float>::value){
+//		return false;
+//	}
+//
+//	if (std::fabs(a - b) > 1e-6) {
+//		return true;
+//	}
+//
+//	return false;
+//}
+//
+//int main(int argv, char* args[])
+//{
+//	double d1 = 0.2;
+//	double d2 = 1 / std::sqrt(5) / std::sqrt(5);
+//
+//	float f3 = 1.5f;
+//	float f4 = 1.2f;
+//	if (is_big("a", "b")){
+//		int i = 100;
+//	}
+//	if (equal(d1,d2)){
+//		int i = 100;
+//	}
+//	std::cout << "d1 = " << d1 << std::endl;
+//	std::cout << "d2 = " << d2 << std::endl;
+//
+//
+//	return 0;
+//}
 
-//判断相等
-template <typename T>
-typename std::enable_if<!std::numeric_limits<T>::is_integer, bool>::type
-equal(T a, T b)
+//#include <iostream>
+//template<typename TYPE>
+//void typeCheck(TYPE data)
+//{
+//	if (std::is_same<TYPE, int>::value)
+//	{
+//		std::cout << "int type" << std::endl;
+//	}
+//	//返回bool值
+//	else if (std::is_same<TYPE, std::string>::value)
+//	{
+//		std::cout << "string type" << std::endl;
+//	}
+//	else
+//	{
+//		std::cout << "other type";
+//	}
+//}
+//
+//int main()
+//{
+//	int b = 1;
+//	int a =b;
+//	typeCheck<int >(a);
+//}
+
+//#include <iostream>
+//#include <boost/asio.hpp>
+//boost::asio::io_service io;
+//
+//boost::asio::deadline_timer de(io, boost::posix_time::seconds(0));
+//void start_time()
+//{
+//	de.expires_at(de.expires_at() + boost::posix_time::seconds(5));
+//	de.async_wait([](const boost::system::error_code &ec) {
+//		if (ec){
+//			return;
+//		}
+//
+//		std::cout << "111" << std::endl;
+//		start_time();
+//		});
+//}
+//int main()
+//{
+//	//post请求
+//	//io.post();
+//	start_time();
+//	io.run();
+//	int i = 100;
+//}
+//#include <iostream>
+//#include <string>
+//#include "reflect.hpp"
+//
+//struct MyStruct
+//{
+//	std::string str;
+//	int a;
+//};
+//
+//REFLECTION(MyStruct, a,str)
+//
+//int main()
+//{
+///*	meta_info_reflectget_element_names()*/
+//	MyStruct my{ "111",2};
+//	auto info= meta_info_reflect(my);
+//	//数组所有的映射内容
+//	auto vec = info.get_element_names();
+//
+//	//结构体名
+//	std::string str = info.get_class_name();
+//
+//	auto tuple_ = info.get_element_meta_protype();
+//
+//	auto sk = std::get<0>(tuple_);
+//	reflector::each_object(my, [](MyStruct obj, std::string name, auto type) {
+//		std::cout <<obj.a << std::endl;
+//		std::cout <<type<< std::endl; //  结构体内的地址
+//		std::cout << name << std::endl;
+//		});
+//
+//	reflector::find_protype("a", my, [](MyStruct obj, std::string name, auto type) {
+//		std::cout << "11" << std::endl;
+//		});
+//}
+
+#include <crtdbg.h>  
+
+
+#ifdef _DEBUG  
+#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)  
+#endif  
+
+void EnableMemLeakCheck()
 {
-	if (std::fabs(a-b)<1e-6) {
-		return true;
-	}
-		
-	return false;
+	_CrtSetDbgFlag(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) | _CRTDBG_LEAK_CHECK_DF);
 }
 
-//判断两个float大小
-template <typename T>
-bool is_big(T a, T b)
+
+void detect_memory_leaks(bool on_off)
 {
-	if (!std::is_same<T,double>::value && !std::is_same<T,float>::value){
-		return false;
+	int flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG | _CRTDBG_LEAK_CHECK_DF);
+	if (!on_off)
+		flags &= ~_CRTDBG_LEAK_CHECK_DF;
+	else {
+		flags |= _CRTDBG_LEAK_CHECK_DF;
+		_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
+		_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDOUT);
 	}
-
-	if (std::fabs(a - b) > 1e-6) {
-		return true;
-	}
-
-	return false;
+	_CrtSetDbgFlag(flags);
 }
 
-int main(int argv, char* args[])
+using namespace std;
+int main()
 {
-	double d1 = 0.2;
-	double d2 = 1 / std::sqrt(5) / std::sqrt(5);
+	EnableMemLeakCheck();
+	//detect_memory_leaks(true);
+	//_CrtSetBreakAlloc(2403);
+	int* ptr = new int;
+	//delete ptr;
+	//ptr = nullptr;
+	//_CrtSetBreakAlloc(556);  
+	//自己的代码
+	//_CrtDumpMemoryLeaks();
 
-	float f3 = 1.5f;
-	float f4 = 1.2f;
-	if (is_big("a", "b")){
-		int i = 100;
-	}
-	if (equal(d1,d2)){
-		int i = 100;
-	}
-	std::cout << "d1 = " << d1 << std::endl;
-	std::cout << "d2 = " << d2 << std::endl;
-
-
-	return 0;
 }
