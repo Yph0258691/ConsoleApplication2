@@ -2348,10 +2348,10 @@
 ///*	meta_info_reflectget_element_names()*/
 //	MyStruct my{ "111",2};
 //	auto info= meta_info_reflect(my);
-//	//数组所有的映射内容
+//	数组所有的映射内容
 //	auto vec = info.get_element_names();
 //
-//	//结构体名
+//	结构体名
 //	std::string str = info.get_class_name();
 //
 //	auto tuple_ = info.get_element_meta_protype();
@@ -2359,7 +2359,7 @@
 //	auto sk = std::get<0>(tuple_);
 //	reflector::each_object(my, [](MyStruct obj, std::string name, auto type) {
 //		std::cout <<obj.a << std::endl;
-//		std::cout <<type<< std::endl; //  结构体内的地址
+//		std::cout << typeid(obj.a).name() << std::endl; //  结构体内的地址
 //		std::cout << name << std::endl;
 //		});
 //
@@ -2368,43 +2368,362 @@
 //		});
 //}
 
-#include <crtdbg.h>  
+//#include <crtdbg.h>  
+//
+//
+//#ifdef _DEBUG  
+//#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)  
+//#endif  
+//
+//void EnableMemLeakCheck()
+//{
+//	_CrtSetDbgFlag(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) | _CRTDBG_LEAK_CHECK_DF);
+//}
+//
+//
+//void detect_memory_leaks(bool on_off)
+//{
+//	int flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG | _CRTDBG_LEAK_CHECK_DF);
+//	if (!on_off)
+//		flags &= ~_CRTDBG_LEAK_CHECK_DF;
+//	else {
+//		flags |= _CRTDBG_LEAK_CHECK_DF;
+//		_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
+//		_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDOUT);
+//	}
+//	_CrtSetDbgFlag(flags);
+//}
+//
+//using namespace std;
+//int main()
+//{
+//	EnableMemLeakCheck();
+//	//detect_memory_leaks(true);
+//	//_CrtSetBreakAlloc(2403);
+//	int* ptr = new int;
+//	//delete ptr;
+//	//ptr = nullptr;
+//	//_CrtSetBreakAlloc(556);  
+//	//自己的代码
+//	//_CrtDumpMemoryLeaks();
+//
+//}
 
+//#include <iostream>
+//#include<typeinfo>
+//#include <string>
+//
+//int main()
+//{
+//	int i = 100;
+//	std::string type_name = typeid(i).name();
+//}
 
-#ifdef _DEBUG  
-#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)  
-#endif  
+//#include <iostream>
+//#include <boost/process.hpp>
+//#include <regex>
+//
+//bool find_vray()
+//{
+//	std::vector<std::string>vec;
+//	std::regex e("^([^ ]*)3DSMAX(\\d{4})_MAIN([^ ]*)");
+//	std::smatch sub_match;
+//	boost::process::environment evn = boost::this_process::environment();
+//
+//	for (auto str : evn) {
+//		//系统变量
+//		std::string name = str.get_name();
+//		if (!name.empty()) {
+//			if (std::regex_match(name, sub_match, e)) {
+//				vec.push_back(str.get_name());
+//			}
+//		}
+//	}	
+//
+//	if (vec.empty()){
+//		return false;
+//	}
+//	
+//	return true;
+//}
+//
+//bool find_3dMax_Path()
+//{
+//	std::vector<std::string>vec;
+//	std::regex e("^([^ ]*)ADSK_3DSMAX_x64_([^ ]*)");
+//	std::smatch sub_match;
+//	boost::process::environment evn = boost::this_process::environment();
+//
+//	for (auto str : evn) {
+//		//系统变量
+//		std::string name = str.get_name();
+//		if (!name.empty()) {
+//			if (std::regex_match(name, sub_match, e)) {
+//				vec.push_back(str.get_name());
+//			}
+//		}
+//	}
+//
+//	if (vec.empty()) {
+//		return false;
+//	}
+//
+//	return true;
+//}
+//
+//int main()
+//{
+//	find_3dMax_Path();
+//}
 
-void EnableMemLeakCheck()
-{
-	_CrtSetDbgFlag(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) | _CRTDBG_LEAK_CHECK_DF);
-}
+//#include "WinReg.hpp"
+//#include <string>
+//#include <iostream>
+//#include <algorithm>
+//#include <filesystem>
+//#include <codecvt>  // for codecvt_utf8_utf16
+//#include <locale>   // for wstring_convert
+//
+//#ifdef _MSC_VER
+//#pragma warning(disable:4996)
+//#endif
+//
+//using namespace std;
+//std::wstring string_to_wstring(const std::string& s)
+//{
+//	std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
+//	return conv.from_bytes(s);
+//}
+//bool HasDVDDrive()
+//{
+//	char szbuf[MAX_PATH] = { 0 };
+//	GetLogicalDriveStringsA(MAX_PATH, szbuf);
+//
+//	int nCount = 0;
+//	char* pDrive = szbuf;
+//	for (int nlen = strlen(szbuf); nlen == 3;)
+//	{
+//		if (GetDriveTypeA(pDrive) == DRIVE_CDROM)
+//		{
+//			return true;
+//		}
+//		pDrive += 4;
+//		nlen = strlen(pDrive);
+//	}
+//	return false;
+//}
+//
+//int GetAllDrives(std::vector<std::string>& vecDrives)
+//{
+//	char szbuf[MAX_PATH] = { 0 };
+//	GetLogicalDriveStringsA(MAX_PATH, szbuf);
+//
+//	int nCount = 0;
+//	char* pDrive = szbuf;
+//	for (std::size_t nlen = strlen(szbuf); nlen == 3; nCount++)
+//	{
+//		//网络盘
+//		if (GetDriveTypeA(pDrive) == DRIVE_FIXED )
+//		{
+//			std::string strDrive = pDrive;
+//			vecDrives.push_back(strDrive);
+//		}
+//
+//		pDrive += 4;
+//		nlen = strlen(pDrive);
+//	}
+//	return nCount;
+//}
+//
+//std::wstring getWorkingPath() {
+//
+//	const std::wstring testSubKey = L"Software\\ZheJiangZhiWangTech\\DBRenderClient";
+//	winreg::RegKey key{ HKEY_CURRENT_USER, testSubKey };
+//
+//	try
+//	{
+//		std::wstring path = key.GetStringValue(L"working_path");
+//		if (!path.empty()) {
+//			return path;
+//		}
+//	}catch (...)
+//	{
+//
+//		std::vector<std::string>vecs;
+//		GetAllDrives(vecs);
+//		int count = vecs.size();
+//
+//		std::vector<std::pair<int, std::int64_t>>disk_vecs;
+//
+//		int index = 0;
+//		for (int i = 0; i < count; i++) {
+//			//得出磁盘的可用空间
+//			DWORD dwTotalClusters;//总的簇
+//			DWORD dwFreeClusters;//可用的簇
+//			DWORD dwSectPerClust;//每个簇有多少个扇区
+//			DWORD dwBytesPerSect;//每个扇区有多少个字节
+//			BOOL bResult = GetDiskFreeSpace(string_to_wstring(vecs[i].c_str()).c_str(), &dwSectPerClust, &dwBytesPerSect, &dwFreeClusters, &dwTotalClusters);
+//			if (bResult) {
+//				int bytes_available = dwFreeClusters * (DWORD64)dwSectPerClust * (DWORD64)dwBytesPerSect;
+//				disk_vecs.push_back({ i,bytes_available });
+//			}
+//		}
+//
+//		std::sort(disk_vecs.begin(), disk_vecs.end(), [](std::pair<int, std::int64_t>p1, std::pair<int, std::int64_t>p2)->bool {return p1.second > p2.second; });
+//		std::string disk_str = vecs[disk_vecs[0].first] + "render_temp_path1";
+//
+//		if (!std::filesystem::exists(disk_str)){
+//			std::filesystem::create_directories(disk_str);
+//		}
+//		key.SetStringValue(L"working_path",string_to_wstring(disk_str));
+//	}
+//}
+//
+//void get_open_file_names(std::vector<std::wstring>& vecs)
+//{
+//	wchar_t sz_path_name[MAX_PATH] = { 0 };
+//	std::wstring sz_path;
+//	OPENFILENAMEW open_file_name = {};
+//	open_file_name.lStructSize = sizeof(OPENFILENAMEW);
+//	open_file_name.nMaxFile = MAX_PATH;//这个必须设置，不设置的话不会出现打开文件对话框  
+//	open_file_name.lpstrFilter = L"文本文件 任何文件（*.max*）\0*.*\0";
+//	open_file_name.lpstrFile = sz_path_name;
+//	open_file_name.nFilterIndex = 1;
+//	open_file_name.Flags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_OVERWRITEPROMPT | OFN_NOCHANGEDIR | OFN_ALLOWMULTISELECT;
+//
+//	if (GetOpenFileName(&open_file_name)) {
+//		sz_path.resize(open_file_name.nFileOffset-1);
+//		lstrcpyn(&sz_path[0], sz_path_name, open_file_name.nFileOffset);
+//		sz_path += L"\\";
+//
+//		wchar_t* p = sz_path_name + open_file_name.nFileOffset; //把指针移到第一个文件
+//		while (*p) {
+//			std::wstring w_path = sz_path;
+//			w_path += p;
+//			vecs.push_back(w_path);
+//			p += lstrlen(p) + 1;     //移至下一个文件
+//		}
+//	}
+//}
+//
+//int main()
+//{
+//	std::string path = "E:\\render_temp_path\\Camera001.vrscene";
+//	//std::string scene_name = std::filesystem::path(path).filename().string();
+//	//std::string path11 = std::filesystem::path(path).parent_path().string();
+//	//std::string  destPath_ =std::filesystem::path(path).parent_path().string() + "/"+std::filesystem::path(path).stem().string();
+//	//std::string file_name = std::filesystem::path("E:/render_temp_path/Camera001/Camera001.vrscene").filename().string();
+//	//std::wstring www = L"E:\\";
+//	//www+= L"\\";
+//	//std::vector<std::wstring>vecs;
+//	//get_open_file_names(vecs);
+//	////std::vector<std::string>vecs;
+//	////GetAllDrives(vecs);
+//	//std::string ss = std::filesystem::relative("E:\\").string();
+//	//getWorkingPath();
+//}
+//
+//				 
+//#include <iostream>
+//#include <filesystem>
+//#include <boost/process.hpp>
+//struct max_vision_info {
+//	int version = 0;
+//	std::string path;
+//};
+//
+//std::vector<max_vision_info> get_3dmax_versions()
+//{
+//	boost::process::environment ev = boost::this_process::environment();
+//	std::vector <max_vision_info> version_vecs;
+//	for (int year = 2011; year < 2050; year++) {
+//		const std::string env_name = "ADSK_3DSMAX_x64_" + std::to_string(year);
+//		std::string path = ev.get(env_name);
+//		if (path.empty()){
+//			continue;
+//		}
+//
+//		max_vision_info info;
+//		info.path = path;
+//		info.version = year;
+//		version_vecs.push_back(info);
+//	}
+//	return version_vecs;
+//}
+//
+//int main()
+//{
+//	if (std::filesystem::remove("E:/111.txt")){
+//		int i = 100;
+//	}
+//	
+//	std::wstring ws = L"E:/111";
+//	std::string path = std::filesystem::path(ws).string();
+//	get_3dmax_versions();
+//}
 
+/*************windows下获取对话框下的多个文件************************/
+//#include <iostream>
+//#include <windows.h>
+//#include <vector>
+//void get_open_file_names(std::vector<std::wstring>&vecs)
+//{
+//	wchar_t szPathName[MAX_PATH] = { 0 };
+//	wchar_t szPath[MAX_PATH] = { 0 };
+//	wchar_t szFileName[80 * MAX_PATH] = { 0 };
+//	OPENFILENAMEW openFileName = {};
+//	openFileName.lStructSize = sizeof(OPENFILENAMEW);
+//	openFileName.nMaxFile = MAX_PATH;//这个必须设置，不设置的话不会出现打开文件对话框  
+//	openFileName.lpstrFilter = L"文本文件 任何文件（*.max*）\0*.*\0";
+//	openFileName.lpstrFile = szPathName;
+//	openFileName.nFilterIndex = 1;
+//	openFileName.Flags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_OVERWRITEPROMPT | OFN_NOCHANGEDIR | OFN_ALLOWMULTISELECT;
+//
+//	if (GetOpenFileName(&openFileName))
+//	{
+//
+//		lstrcpyn(szPath, szPathName, openFileName.nFileOffset);
+//
+//		szPath[openFileName.nFileOffset] =0;
+//		int nLen = lstrlen(szPath);
+//
+//		if (szPath[nLen - 1] != '\\')   
+//		{
+//			lstrcat(szPath, TEXT("\\"));
+//		}
+//
+//		wchar_t* p = szPathName + openFileName.nFileOffset; //把指针移到第一个文件
+//
+//		while (*p)
+//		{
+//			ZeroMemory(szFileName, sizeof(szFileName));
+//			lstrcat(szFileName, szPath);  //给文件名加上路径  
+//			lstrcat(szFileName, p);    //加上文件名    
+//			vecs.push_back(szFileName);
+//			p += lstrlen(p) + 1;     //移至下一个文件
+//		}
+//	}
+//}
+//
+//int main()
+//{
+//	std::vector<std::wstring>vecs;
+//	get_open_file_names(vecs);
+//	int si = 0;
+//}
 
-void detect_memory_leaks(bool on_off)
-{
-	int flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG | _CRTDBG_LEAK_CHECK_DF);
-	if (!on_off)
-		flags &= ~_CRTDBG_LEAK_CHECK_DF;
-	else {
-		flags |= _CRTDBG_LEAK_CHECK_DF;
-		_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
-		_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDOUT);
-	}
-	_CrtSetDbgFlag(flags);
-}
+//#include <iostream>
+//
+//int main(int argc, char** argv)
+//{
+//	std::string ss = "11";
+//	if (!ss.empty()){
+//		int i = 100;
+//	}
+//}
 
-using namespace std;
+#include <iostream>
 int main()
 {
-	EnableMemLeakCheck();
-	//detect_memory_leaks(true);
-	//_CrtSetBreakAlloc(2403);
-	int* ptr = new int;
-	//delete ptr;
-	//ptr = nullptr;
-	//_CrtSetBreakAlloc(556);  
-	//自己的代码
-	//_CrtDumpMemoryLeaks();
 
 }

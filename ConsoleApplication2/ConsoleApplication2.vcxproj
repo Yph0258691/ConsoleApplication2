@@ -171,6 +171,7 @@
     <ClInclude Include="reflect.hpp" />
     <ClInclude Include="server_base.hpp" />
     <ClInclude Include="server_http.hpp" />
+    <ClInclude Include="WinReg.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
