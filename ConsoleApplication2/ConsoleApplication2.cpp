@@ -2723,7 +2723,92 @@
 //}
 
 #include <iostream>
+#include <filesystem>
+#include <string>
+#include <time.h>
+#include <string>
+#include <filesystem>
+#include <windows.h>
+#include <DbgHelp.h>
+#include <chrono>
+#pragma comment(lib, "DbgHelp.lib")
+#pragma warning(disable:4996)
+
+const std::string g_dump_dir = "./dump";
+const std::string g_dump_name = "/test_dump_";
+
+ std::int64_t get_time_stamp()
+ {
+	 std::chrono::time_point<std::chrono::system_clock, std::chrono::seconds> tp = std::chrono::time_point_cast<std::chrono::seconds>(std::chrono::system_clock::now());
+	 auto tmp = std::chrono::duration_cast<std::chrono::seconds>(tp.time_since_epoch());
+	 return tmp.count();
+ }
+
+ std::tm* gettm(int64_t timestamp)
+ {
+	 int64_t milli = timestamp + (int64_t)8 * 60 * 60;//此处转化为东八区北京时间，如果是其它时区需要按需求修改
+	 auto mTime = std::chrono::seconds(milli);
+	 auto tp = std::chrono::time_point<std::chrono::system_clock, std::chrono::seconds>(mTime);
+	 auto tt = std::chrono::system_clock::to_time_t(tp);
+	 std::tm* now = std::gmtime(&tt);
+	 return now;
+ }
+
+ std::string all_tm_to_str(std::tm* ptm,std::string format_str)
+ {
+	 char date[60] = { 0 };
+	 sprintf(date, format_str.c_str(),
+		 (int)ptm->tm_year + 1900, (int)ptm->tm_mon + 1, (int)ptm->tm_mday,
+		 (int)ptm->tm_hour, (int)ptm->tm_min, (int)ptm->tm_sec);
+	 return std::string(date);
+ }	
+
+ std::string date_tm_to_str(std::tm* ptm, std::string format_str)
+ {
+	 char date[60] = { 0 };
+	 sprintf(date, format_str.c_str(),
+		 (int)ptm->tm_year + 1900, (int)ptm->tm_mon + 1, (int)ptm->tm_mday);
+	 return std::string(date);
+ }
+
+ std::string time_tm_to_str(std::tm* ptm, std::string format_str)
+ {
+	 char date[60] = { 0 };
+	 sprintf(date, format_str.c_str(),(int)ptm->tm_hour, (int)ptm->tm_min, (int)ptm->tm_sec);
+	 return std::string(date);
+ }
+
+ LONG ExceptionCrashHandler(EXCEPTION_POINTERS* pException)
+ {
+	 std::int64_t time_stamp = get_time_stamp();
+	 std::string dump_dir = g_dump_dir +"/"+ date_tm_to_str(gettm(time_stamp),"%d-%02d-%02d");
+	 if (!std::filesystem::exists(dump_dir))
+	 {
+		 std::filesystem::create_directories(dump_dir);
+	 }
+	 std::string dump_name = dump_dir;
+	 dump_name += g_dump_name;
+	 dump_name += time_tm_to_str(gettm(time_stamp), "%02d时%02d分%02d秒");
+	 dump_name += ".dmp";
+	 // 创建Dump文件
+	 HANDLE hDumpFile = CreateFileA(dump_name.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+	 // Dump信息
+	 MINIDUMP_EXCEPTION_INFORMATION dumpInfo;
+	 dumpInfo.ExceptionPointers = pException;
+	 dumpInfo.ThreadId = GetCurrentThreadId();
+	 dumpInfo.ClientPointers = TRUE;
+	 // 写入Dump文件内容
+	 MiniDumpWriteDump(GetCurrentProcess(), GetCurrentProcessId(), hDumpFile, MiniDumpNormal, &dumpInfo, NULL, NULL);
+	 CloseHandle(hDumpFile);
+	 return EXCEPTION_EXECUTE_HANDLER;
+ }
+
+
 int main()
 {
+
+	::SetUnhandledExceptionFilter((LPTOP_LEVEL_EXCEPTION_FILTER)ExceptionCrashHandler);
+
+	strcpy(NULL, "adfadfg");
 
 }
