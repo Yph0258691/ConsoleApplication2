@@ -2875,6 +2875,75 @@
 //	std::string str = all_tm_to_str(gettm(time_stamp),"%d-%02d-%02d %02d:%02d:%02d");
 //}
 
+
+//#include <boost/asio.hpp>
+//boost::asio::io_service io;
+////boost::asio::ip::tcp::acceptor ac(io, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), 8888));
+//boost::asio::ip::tcp::acceptor ac(io);
+//boost::asio::ip::tcp::endpoint end(boost::asio::ip::tcp::v4(), 8888);
+//
+//void accpect()
+//{
+//	std::shared_ptr<boost::asio::ip::tcp::socket> sock_client_ptr(new boost::asio::ip::tcp::socket(io));
+//	ac.async_accept(&sock_client_ptr, [&sock_client_ptr]( const boost::system::error_code& ec) {
+//		if ( ec ){
+//			return;
+//		}
+//
+//		accpect();
+//		});
+//}
+//
+//int main()
+//{
+//	ac.open(end.protocol());
+//	ac.bind(end);
+//
+//	ac.listen();
+//	ac.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
+//	accpect();
+//
+//	io.run();
+//}
+
+//#include <iostream>
+//#include <boost/asio.hpp>
+//boost::asio::io_service io;
+//boost::asio::ip::tcp::endpoint end(boost::asio::ip::tcp::v4(), 8888);
+//
+//
+////自动识别服务器的ip
+//boost::asio::ip::tcp::acceptor ac(io, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), 8888));
+//
+//
+//void MakeSession()
+//{
+//	std::shared_ptr<boost::asio::ip::tcp::socket> sock_client_ptr(new boost::asio::ip::tcp::socket(io));
+//	ac.async_accept(*sock_client_ptr, [sock_client_ptr](const boost::system::error_code &ec) {
+//		if (ec) {
+//			return;
+//		}
+//
+//		//必须连接上才能设置当前socket的属性
+//		sock_client_ptr->set_option(boost::asio::ip::tcp::socket::reuse_address(true));
+//		std::cout << sock_client_ptr->remote_endpoint().address().to_string() << std::endl;
+//		//造成socket阻塞，可能是因为io输出口的问题
+//		//std::cout << sock_client_ptr->remote_endpoint().address()<< std::endl;
+//		MakeSession();
+//		});
+//}
+//
+//int main()
+//{
+//	ac.open(end.protocol());
+//	ac.bind(end);
+//
+//	ac.listen();
+//	ac.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
+//
+//	MakeSession();
+//	io.run();
+//}
 #include <iostream>
 
 int main()
