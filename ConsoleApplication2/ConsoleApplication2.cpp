@@ -2950,8 +2950,41 @@
 //}
 
 #include <iostream>
+#include "sha1.h"
+#include <string>
+#include <codecvt>  // for codecvt_utf8_utf16
+#include <locale>   // for wstring_convert
+
+#ifdef _MSC_VER
+#pragma warning(disable:4996)
+#endif
+
+std::wstring utf8_to_wstring(const std::string& s)
+{
+	std::string strLocale = setlocale(LC_ALL, "");
+	const char* chSrc = s.c_str();
+	size_t nDestSize = mbstowcs(NULL, chSrc, 0) + 1;
+	wchar_t* wchDest = new wchar_t[nDestSize];
+	wmemset(wchDest, 0, nDestSize);
+	mbstowcs(wchDest, chSrc, nDestSize);
+	std::wstring wstrResult = wchDest;
+	delete[]wchDest;
+	setlocale(LC_ALL, strLocale.c_str());
+	return wstrResult;
+
+}
 
 int main()
 {
+
+	std::string text1 = "11111";
+	std::string buffer;
+	SHA1_CTX ctx;
+
+	sha1_init(&ctx);
+	sha1_update(&ctx, (BYTE*)text1.c_str(), strlen(text1.c_str()));
+	sha1_final(&ctx, (BYTE*)buffer.c_str());
+
+	std::wstring sss = utf8_to_wstring(buffer);
 
 }

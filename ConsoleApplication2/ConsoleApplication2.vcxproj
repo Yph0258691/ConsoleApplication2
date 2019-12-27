@@ -169,6 +169,7 @@
   <ItemGroup>
     <ClCompile Include="ConsoleApplication2.cpp" />
     <ClCompile Include="md5.cpp" />
+    <ClCompile Include="sha1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="handler.hpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="reflect.hpp" />
     <ClInclude Include="server_base.hpp" />
     <ClInclude Include="server_http.hpp" />
+    <ClInclude Include="sha1.h" />
     <ClInclude Include="WinReg.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
