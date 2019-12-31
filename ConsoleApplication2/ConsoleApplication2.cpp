@@ -2949,42 +2949,172 @@
 //	io.run();
 //}
 
+//#include <iostream>
+//#include "sha1.h"
+//#include <string>
+//
+//int main()
+//{
+//
+//	std::string text1 = "11111";
+//	std::string buffer;
+//	SHA1_CTX ctx;
+//
+//	sha1_init(&ctx);
+//	sha1_update(&ctx, (BYTE*)text1.c_str(), strlen(text1.c_str()));
+//	sha1_final(&ctx, (BYTE*)buffer.c_str());
+//
+//}
+
+//#include <iostream>
+//#include <boost/property_tree/ini_parser.hpp>
+//#include <fstream>
+//#include <filesystem>
+//#include <codecvt>
+//#include <locale>
+//#pragma warning(disable:4996)
+//
+//std::string u16string_to_utf8(const std::u16string& str)
+//{
+//	std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t> strCnv;
+//	return strCnv.to_bytes(str);
+//}
+//
+//std::wstring string_to_wstring(const std::string& str)
+//{
+//	std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
+//	return conv.from_bytes(str);
+//}
+//
+//std::string wstring_to_string(const std::wstring& wstr)
+//{
+//	std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
+//	return conv.to_bytes(wstr);
+//}
+//
+//void split_string(std::vector<std::string>& ret, const std::string& src_str, std::string demi)
+//{
+//	if (src_str.empty() || demi.empty()) {
+//		return;
+//	}
+//
+//	std::size_t i_start_pos = 0;
+//	std::size_t i_pos = 0;
+//	while (i_pos != std::string::npos) {
+//		i_pos = src_str.find(demi, i_start_pos);
+//		if (i_pos == i_start_pos) {
+//		}
+//		else {
+//			ret.push_back(src_str.substr(i_start_pos, i_pos - i_start_pos));
+//		}
+//
+//		i_start_pos = i_pos + 1;
+//		i_start_pos = src_str.find_first_not_of(demi, i_start_pos);
+//	}
+//}
+//enum max_mode_type {
+//	max_model_type_none = -1,
+//	max_model_type_pic = 1,         //效果图
+//	max_model_type_anim = 2,        //动画
+//
+//
+//	max_model_type_max,
+//};
+//
+//
+//struct vray_scence_info {
+//	int image_width = 0;
+//	int image_height = 0;
+//	std::string name;
+//	std::string output_root;
+//};
+//
+//struct animation_info {
+//	int begin_frame_index = 0;
+//	int end_frame_index = 0;
+//
+//};
+//struct max_model_info {
+//	int vrmap_render = -1;
+//	int vrmap_hasmap = -1;
+//	int max_model_type = max_model_type_none;
+//	std::string        max_mode_path;
+//	std::string        output_root;		//转换成vrscence文件的输出路径
+//	std::vector<vray_scence_info>scene_vec;
+//	animation_info           anim_info;       //动画相关信息
+//	std::vector<std::string>  render_elemens;  //渲染元素(通道信息)
+//};
+//
+//int main()
+//{
+//
+//	std::string ini_file = "E:\\model_vrscene_names.txt";
+//
+//	FILE* fp = _wfopen(string_to_wstring(ini_file).c_str(), L"r, ccs=UTF-16LE");
+//
+//	if (fp == NULL) {
+//		return 0;
+//	}
+//
+//	std::wstringstream wss;
+//
+//	wchar_t str[1024] = { 0 };
+//	while (fgetws(str, 1024, fp) != NULL) {
+//		wss << str;
+//	}
+//
+//	fclose(fp);
+//
+//	max_model_info info_;
+//
+//	boost::property_tree::wptree pt, tag_settingRoot1, tag_settingRoot2, tag_settingRoot3;
+//	boost::property_tree::read_ini(wss, pt);
+//	tag_settingRoot1 = pt.get_child(string_to_wstring("cameras_info"));
+//	std::wstring wstr = tag_settingRoot1.get<std::wstring>(string_to_wstring("camera_list"));
+//	std::string camera_listStr = wstring_to_string(wstr);
+//	std::vector<std::string>tempSceneList;
+//	split_string(tempSceneList, camera_listStr, ",");
+//
+//	tag_settingRoot2 = pt.get_child(string_to_wstring("vray_info"));
+//	int output_width = tag_settingRoot2.get<int>(string_to_wstring("output_width"));
+//	int output_height = tag_settingRoot2.get<int>(string_to_wstring("output_height"));
+//	info_.vrmap_render = tag_settingRoot2.get<bool>(string_to_wstring("vrmap_render")) ? 1 : 0;
+//	info_.vrmap_hasmap = tag_settingRoot2.get<bool>(string_to_wstring("vrmap_hasmap")) ? 1 : 0;
+//	tag_settingRoot3 = pt.get_child(string_to_wstring("model_info"));
+//	info_.max_model_type = tag_settingRoot3.get<int>(string_to_wstring("type"));
+//	if (info_.max_model_type == max_model_type_anim) {
+//		auto an_ptr = pt.get_child(string_to_wstring("animation"));
+//		info_.anim_info.begin_frame_index = an_ptr.get<int>(string_to_wstring("begin_frame"));
+//		info_.anim_info.end_frame_index = an_ptr.get<int>(string_to_wstring("end_frame"));
+//	}
+//
+//	std::string render_elements = wstring_to_string(tag_settingRoot2.get<std::wstring>(string_to_wstring("elements_list")));
+//	std::vector<std::string>render_element_vec;
+//	if (!render_elements.empty()) {
+//		split_string(render_element_vec, render_elements, ",");
+//	}
+//
+//	for (const auto& str : render_element_vec) {
+//		info_.render_elemens.push_back(str);
+//	}
+//
+//	for (const auto& scene_name : tempSceneList) {
+//		vray_scence_info info;
+//		info.name = scene_name + ".vrscene";
+//		info.image_height = output_width;
+//		info.image_width = output_height;
+//		std::string vrscene_name = info.output_root + "/" + info.name;
+//		if (std::filesystem::exists(vrscene_name)) {
+//			info_.scene_vec.push_back(info);
+//		}
+//
+//	}
+//
+//}
+
 #include <iostream>
-#include "sha1.h"
-#include <string>
-#include <codecvt>  // for codecvt_utf8_utf16
-#include <locale>   // for wstring_convert
-
-#ifdef _MSC_VER
-#pragma warning(disable:4996)
-#endif
-
-std::wstring utf8_to_wstring(const std::string& s)
-{
-	std::string strLocale = setlocale(LC_ALL, "");
-	const char* chSrc = s.c_str();
-	size_t nDestSize = mbstowcs(NULL, chSrc, 0) + 1;
-	wchar_t* wchDest = new wchar_t[nDestSize];
-	wmemset(wchDest, 0, nDestSize);
-	mbstowcs(wchDest, chSrc, nDestSize);
-	std::wstring wstrResult = wchDest;
-	delete[]wchDest;
-	setlocale(LC_ALL, strLocale.c_str());
-	return wstrResult;
-
-}
 
 int main()
 {
-
-	std::string text1 = "11111";
-	std::string buffer;
-	SHA1_CTX ctx;
-
-	sha1_init(&ctx);
-	sha1_update(&ctx, (BYTE*)text1.c_str(), strlen(text1.c_str()));
-	sha1_final(&ctx, (BYTE*)buffer.c_str());
-
-	std::wstring sss = utf8_to_wstring(buffer);
 
 }

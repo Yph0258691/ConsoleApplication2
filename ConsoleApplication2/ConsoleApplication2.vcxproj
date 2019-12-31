@@ -77,8 +77,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\coding\octopus_third_party\;E:\coding\octopus_third_party\cppRedis\;E:\coding\octopus_third_party\cppRedis\includes;E:\coding\octopus_third_party\boost_1_69_0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\coding\octopus_third_party\cppRedis\lib\Debug;E:\coding\octopus_third_party\boost_1_69_0\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\coding\yinpinghua\octopus_third_party\fmt\include;E:\coding\octopus_third_party\;E:\coding\octopus_third_party\cppRedis\;E:\coding\octopus_third_party\cppRedis\includes;E:\coding\octopus_third_party\boost_1_69_0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\coding\yinpinghua\octopus_third_party\fmt\Debug;E:\coding\octopus_third_party\cppRedis\lib\Debug;E:\coding\octopus_third_party\boost_1_69_0\lib;$(LibraryPath)</LibraryPath>
     <SourcePath>$(SourcePath)</SourcePath>
     <OutDir>../build/debug/bin/</OutDir>
     <IntDir>../build/debug/obj/</IntDir>
@@ -164,6 +164,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <AdditionalDependencies>fmtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
