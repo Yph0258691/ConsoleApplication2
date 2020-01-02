@@ -3113,8 +3113,43 @@
 //}
 
 #include <iostream>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string>
+#include <sstream>
+
+
+std::string get_cmd_result(const std::string& str_cmd)
+{
+	std::stringstream ss;
+	FILE* pf = NULL;
+
+	if ((pf = _popen(str_cmd.c_str(), "r")) == NULL){
+		return "";
+	}
+
+	char buf[10] = { 0 };
+	while (fgets(buf, sizeof(buf), pf))
+	{
+		ss << buf;
+	}
+
+	_pclose(pf);
+
+	std::string str_result = ss.str();
+	//unsigned int iSize = str_result.size();
+	//if (iSize > 0 && str_result[iSize - 1] == '\n')  // linux
+	//{
+	//	str_result = str_result.substr(0, iSize - 1);
+	//}
+
+	return str_result;
+}
 
 int main()
 {
 
+	std::string cmd = "wmic process get name,processid|findstr YoudaoNote.exe";
+
+	std::string ret = get_cmd_result(cmd);
 }
