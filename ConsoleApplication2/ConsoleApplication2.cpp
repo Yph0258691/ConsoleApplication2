@@ -3147,28 +3147,35 @@
 //	std::string ret = get_cmd_result(cmd);
 //}
 
-#include <nlohmann_json/json.hpp>
+//#include <nlohmann_json/json.hpp>
+//#include <iostream>
+//
+//int main()
+//{
+//	nlohmann::json js;
+//	js["user_id"] = "111";
+//
+//	nlohmann::json js_temp;
+//	for (int i =0;i<5;i++){
+//		js_temp.push_back(i);
+//	}
+//
+//	js["list"] = js_temp;
+//
+//	std::string str = js.dump();
+//
+//
+//	nlohmann::json js1 = nlohmann::json::parse(str);
+//
+//	std::string user_id = js1["user_id"];
+//	for (const auto &js : js1["list"]){
+//		int i = js;
+//	}
+//}
+
 #include <iostream>
 
 int main()
 {
-	nlohmann::json js;
-	js["user_id"] = "111";
 
-	nlohmann::json js_temp;
-	for (int i =0;i<5;i++){
-		js_temp.push_back(i);
-	}
-
-	js["list"] = js_temp;
-
-	std::string str = js.dump();
-
-
-	nlohmann::json js1 = nlohmann::json::parse(str);
-
-	std::string user_id = js1["user_id"];
-	for (const auto &js : js1["list"]){
-		int i = js;
-	}
 }
