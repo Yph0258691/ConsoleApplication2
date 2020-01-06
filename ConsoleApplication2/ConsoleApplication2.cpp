@@ -3173,100 +3173,101 @@
 //	}
 //}
 
-#include <iostream>
-#include <windows.h>
-#include <tlhelp32.h>
-#include <vector>
-
-bool KillProcessEx(std::wstring pName)
-{
-	HANDLE hProcessSnap;
-	PROCESSENTRY32 pe32;
-	DWORD dwPriorityClass;
-
-	bool bFind = false;
-	// Take a snapshot of all processes in the system.
-	hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
-	if (hProcessSnap == INVALID_HANDLE_VALUE)
-	{
-		return false;
-	}
-
-	// Set the size of the structure before using it.
-	pe32.dwSize = sizeof(PROCESSENTRY32);
-
-	// Retrieve information about the first process,
-	// and exit if unsuccessful
-	if (!Process32First(hProcessSnap, &pe32))
-	{
-		CloseHandle(hProcessSnap);          // clean the snapshot object
-		return false;
-	}
-
-	// Now walk the snapshot of processes, and
-	// display information about each process in turn
-	do
-	{
-		// Retrieve the priority class.
-		dwPriorityClass = 0;
-		
-		if (std::wcscmp(pe32.szExeFile, pName.c_str()) ==0){
-			bFind = true;
-		}
-
-		if (bFind){
-			DWORD dwProcessID = pe32.th32ProcessID;
-			HANDLE hProcess = ::OpenProcess(PROCESS_TERMINATE, FALSE, dwProcessID);
-			::TerminateProcess(hProcess, 0);
-			CloseHandle(hProcess);
-			break;
-		}
-	} while (Process32Next(hProcessSnap, &pe32));
-
-	CloseHandle(hProcessSnap);
-	return bFind;
-}
-
-
-//bool KillProcessEx(vector<wstring>& processNameVec)
+//#include <iostream>
+//#include <windows.h>
+//#include <tlhelp32.h>
+//#include <vector>
+//
+//bool Kill_process(std::wstring pName)
 //{
-//	HANDLE hSnapShot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+//	HANDLE h_process_snap;
+//	PROCESSENTRY32 pe32;
+//	DWORD dw_priority;
 //
-//	PROCESSENTRY32 pe;
-//	pe.dwSize = sizeof(PROCESSENTRY32);
-//
-//	if (!Process32First(hSnapShot, &pe))
-//	{
+//	bool find = false;
+//	// Take a snapshot of all processes in the system.
+//	h_process_snap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+//	if (h_process_snap == INVALID_HANDLE_VALUE){
 //		return false;
 //	}
 //
-//	while (Process32Next(hSnapShot, &pe))
-//	{
-//		std::wstring strTemp = pe.szExeFile;
-//		string strProcessTemp = UnicodeToAscii(strTemp);
+//	// Set the size of the structure before using it.
+//	pe32.dwSize = sizeof(PROCESSENTRY32);
 //
-//		bool bIn = false;
-//		for (int i = 0; i < processNameVec.size(); i++)
-//		{
-//			if (processNameVec[i] == strProcessTemp)
-//			{
-//				bIn = true;
-//			}
+//	// Retrieve information about the first process,
+//	// and exit if unsuccessful
+//	if (!Process32First(h_process_snap, &pe32)){
+//		CloseHandle(h_process_snap);          // clean the snapshot object
+//		return false;
+//	}
+//
+//	// Now walk the snapshot of processes, and
+//	// display information about each process in turn
+//	do
+//	{
+//		// Retrieve the priority class.
+//		dw_priority = 0;
+//		
+//		if (std::wcscmp(pe32.szExeFile, pName.c_str()) ==0){
+//			find = true;
 //		}
 //
-//		if (bIn)
-//		{
-//			DWORD dwProcessID = pe.th32ProcessID;
+//		if (find){
+//			DWORD dwProcessID = pe32.th32ProcessID;
 //			HANDLE hProcess = ::OpenProcess(PROCESS_TERMINATE, FALSE, dwProcessID);
 //			::TerminateProcess(hProcess, 0);
 //			CloseHandle(hProcess);
+//			break;
 //		}
-//	}
+//	} while (Process32Next(h_process_snap, &pe32));
 //
-//	return true;
+//	CloseHandle(h_process_snap);
+//	return find;
 //}
+//
+//
+////bool KillProcessEx(std::vector<std::wstring>& processNameVec)
+////{
+////	HANDLE hSnapShot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+////
+////	PROCESSENTRY32 pe;
+////	pe.dwSize = sizeof(PROCESSENTRY32);
+////
+////	if (!Process32First(hSnapShot, &pe))
+////	{
+////		return false;
+////	}
+////
+////	while (Process32Next(hSnapShot, &pe))
+////	{
+////		bool bIn = false;
+////		for (int i = 0; i < processNameVec.size(); i++)
+////		{
+////			if (std::wcscmp(processNameVec[i].c_str(), pe.szExeFile)){
+////				bIn = true;
+////			}
+////		}
+////
+////		if (bIn)
+////		{
+////			DWORD dwProcessID = pe.th32ProcessID;
+////			HANDLE hProcess = ::OpenProcess(PROCESS_TERMINATE, FALSE, dwProcessID);
+////			::TerminateProcess(hProcess, 0);
+////			CloseHandle(hProcess);
+////		}
+////	}
+////
+////	return true;
+////}
+//
+//int main()
+//{
+//	bool find = KillProcessEx(L"QQ.exe");
+//}
+
+#include <iostream>
 
 int main()
 {
-	bool find = KillProcessEx(L"QQ.exe");
+
 }
