@@ -3264,6 +3264,35 @@
 //{
 //	bool find = KillProcessEx(L"QQ.exe");
 //}
+//
+//#include <iostream>
+//
+//class Noncopyable 
+//{
+//protected:
+//	Noncopyable() {};
+//	~Noncopyable() {};
+//
+//private:
+//	Noncopyable(const Noncopyable&);
+//	Noncopyable& operator=(const Noncopyable&);
+//};
+//
+//class A :public Noncopyable
+//{
+//public:
+//	A(){}
+//	~A() {}
+//	void Display() { std::cout << "A" << std::endl; }
+//};
+//
+//
+//int main()
+//{
+//	A a;
+//	//直接报错
+//	A b = a; 
+//}
 
 #include <iostream>
 
