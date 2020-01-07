@@ -3363,9 +3363,9 @@
 //int main()
 //{
 //
-//    std::shared_ptr < boost::asio::io_service> io_service_ptr = std::make_shared<boost::asio::io_service>();
+//	std::shared_ptr < boost::asio::io_service> io_service_ptr = std::make_shared<boost::asio::io_service>();
 //
-//    std::shared_ptr<boost::asio::steady_timer> time_ = std::make_shared<boost::asio::steady_timer>(*io_service_ptr.get());
+//	std::shared_ptr<boost::asio::steady_timer> time_ = std::make_shared<boost::asio::steady_timer>(*io_service_ptr.get());
 //
 //	std::unique_ptr<std::thread >timer_thread_ptr_ = std::make_unique<std::thread>([io_service_ptr]() {
 //		io_service_ptr->run();
@@ -3373,18 +3373,25 @@
 //
 //
 //	time_->expires_from_now(std::chrono::seconds(2));
-//	time_->async_wait([](boost::system::error_code ec) {
-//		if (ec) {
-//			return;
-//		}
+//	boost::system::error_code ec;
+//	time_->wait(ec);
 //
-//		std::cout << "11" << std::endl;
-//		});
-//
-//
-//	while (1){
-//		std::this_thread::sleep_for(std::chrono::seconds(2));
+//	if (ec){
+//		return 0;
 //	}
+//	std::cout << "11" << std::endl;
+//	//time_->async_wait([](boost::system::error_code ec) {
+//	//	if (ec) {
+//	//		return;
+//	//	}
+//
+//	//	std::cout << "11" << std::endl;
+//	//	});
+//
+//
+//	//while (1) {
+//	//	std::this_thread::sleep_for(std::chrono::seconds(2));
+//	//}
 //}
 
 #include <iostream>
