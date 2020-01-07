@@ -3294,6 +3294,54 @@
 //	A b = a; 
 //}
 
+//#include <iostream>
+//#include <boost/format.hpp>
+//#include <filesystem>
+//
+//int main()
+//{
+//	std::filesystem::copy()
+//	try
+//	{
+//		std::filesystem::rename("E:/render_temp_path/Camera001", "E:/render_temp_path/Camera001_1578296856440");
+//	}
+//	catch (...)
+//	{
+//		
+//	}
+//
+//
+//	std::string   dest_path_new = "E:/render_temp_path/Camera001_1578296856440";
+//	std::string name = dest_path_new + ".7z";
+//
+//	boost::format script_fmat = boost::format("7z.exe a -aoa -y  -mx=0 -mtc=off -mta=off  -mtm=off \"%1%\" \"%2%\"") % name % dest_path_new;
+//
+//	std::string cmd = script_fmat.str();
+//}
+
+//#include <iostream>
+//#include <filesystem>
+//#include <string>
+//
+//std::string& replace_all(std::string& str, const std::string& old_value, const std::string& new_value, int offset)
+//{
+//	std::string::size_type   pos = 0;
+//
+//	if ((pos = str.find(old_value, offset)) != std::string::npos) {
+//		str.replace(pos, old_value.length(), new_value);
+//	}
+//
+//	return   str;
+//}
+//
+//int main()
+//{
+//	std::string path = "E:\\a/";
+//
+//	std::string sss = replace_all(path,"\\","/",0)	;
+//
+//}
+
 #include <iostream>
 
 int main()
