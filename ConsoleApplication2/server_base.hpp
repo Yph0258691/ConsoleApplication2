@@ -105,6 +105,7 @@ namespace ShiyanlouWeb {
 
 							// ×ª»»µ½ istream
 							std::istream stream(read_buffer.get());
+							std::string temp_buf(boost::asio::buffers_begin(read_buffer->data()), boost::asio::buffers_end(read_buffer->data()));
 
 							//                          std::this_thread::sleep_for(std::chrono::seconds(2));
 
