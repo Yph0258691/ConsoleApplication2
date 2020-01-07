@@ -3350,7 +3350,7 @@ using namespace ShiyanlouWeb;
 
 int main() {
 	// HTTP 服务运行在 12345 端口，并启用四个线程
-	Server<HTTP> server(12345, 4);
+	Server<HTTP> server(12345);
 	start_server<Server<HTTP>>(server);
 	return 0;
 }
