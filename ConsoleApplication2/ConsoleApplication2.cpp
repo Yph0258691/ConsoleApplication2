@@ -3393,7 +3393,7 @@
 //	//	std::this_thread::sleep_for(std::chrono::seconds(2));
 //	//}
 //}
-//
+
 //#include <iostream>
 //#include <memory>
 //
@@ -3420,8 +3420,57 @@
 //	ptr1->dispaly();
 //}
 
+//#include <iostream>
+//#include <boost/process.hpp>
+//#include <boost/asio.hpp>
+//#include <boost/asio/steady_timer.hpp>
+//#include <string>
+//#include <thread>
+//#include <memory>
+//std::unique_ptr<std::thread > g_ptr;
+//
+//void create_thread(boost::asio::io_service *io)
+//{
+//	boost::system::error_code ec;
+//	io->run(ec);
+//}
+//int main()
+//{
+//	std::string cmd1 = R"("E:/sort/3dmax2018/3ds Max 2018/3dsmax.exe" -Language=CHS -q -silent -mip -u MAXScript "E:/render_temp_path/output_vray_vrscene1.ms")";
+//
+//	boost::process::child c(cmd1);
+//	std::error_code ec;
+//	boost::asio::io_service io;
+//	boost::asio::steady_timer time_(io);
+//
+//	g_ptr = std::make_unique<std::thread>(create_thread,&io);
+//
+//	time_.expires_from_now(std::chrono::seconds(2));
+//	time_.async_wait([&c](const boost::system::error_code& ec) {
+//		if (ec){
+//			return;
+//		}
+//
+//		if (c.running()){
+//			c.terminate();
+//			return;
+//		}
+//
+//		});
+//	c.wait(ec);
+//
+//	if (g_ptr->joinable()){
+//		g_ptr->join();
+//	}
+//	
+//
+//	if (ec){
+//		return 0;
+//	}
+//}
 
-#include "picohttpparser.h"
+
+#include <iostream>
 int main()
 {
 
