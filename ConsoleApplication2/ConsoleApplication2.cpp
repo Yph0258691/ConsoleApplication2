@@ -3393,6 +3393,32 @@
 //	//	std::this_thread::sleep_for(std::chrono::seconds(2));
 //	//}
 //}
+//
+//#include <iostream>
+//#include <memory>
+//
+////其实就是传入std::shared_ptr<A>的this指针
+//class A :public std::enable_shared_from_this<A>
+//{
+//public:
+//	void dispaly()
+//	{
+//		std::cout << "aa" << std::endl;
+//	}
+//
+//	~A() {
+//		std::cout << "~A()" << std::endl;
+//	}
+//};
+//
+//int main()
+//{
+//	std::shared_ptr<A> ptr = std::make_shared<A>();
+//
+//	std::shared_ptr<A> ptr1 = ptr->shared_from_this();
+//
+//	ptr1->dispaly();
+//}
 
 #include <iostream>
 
