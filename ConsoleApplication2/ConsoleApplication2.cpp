@@ -3588,8 +3588,102 @@
 //	}
 //}
 
+//#include <iostream>
+//#include <fstream>
+//
+//int main()
+//{
+//	std::ifstream file_;
+//	std::ofstream open_file_;
+//	if (file_.is_open()){
+//		return 0;
+//	}
+//
+//	if (open_file_.is_open()) {
+//		return 0;
+//	}
+//
+//
+//	file_.open("E:/PhysCamera004.vrscene", std::ios::binary);
+//	open_file_.open("E:/PhysCamera0041.vrscene", std::ios::binary | std::ios::out);
+//	std::string data;
+//	data.resize(4 * 1024);
+//	file_.read(data.data(), data.size());
+//	std::int64_t readn = file_.gcount();
+//	if (readn <4*1024){
+//		data.resize(readn);
+//	}
+//
+//	open_file_.write(data.c_str(), readn);
+//	if (file_.is_open()){
+//		file_.close();
+//	}
+//
+//	if (open_file_.is_open()){
+//		open_file_.close();
+//	}
+//
+//
+//}
+
 #include <iostream>
+#include <windows.h>
+#include <string>
+#include <vector>
+#include <filesystem>
+#include <map>
+
+#include <locale>
+#include <codecvt>
+#pragma warning(disable:4996)
+
+
+//string_to_wstring
+std::wstring string_to_wstring(const std::string& str)
+{
+	setlocale(LC_ALL, "");
+	std::int64_t size = mbstowcs(NULL, str.c_str(), 0);
+	std::wstring w_str;
+	w_str.resize(size);
+
+	mbstowcs(w_str.data(), str.c_str(), str.size());
+	return w_str;
+}
+
+//转发崩溃（string） (u8string可以)
+std::wstring string_to_wstring1(const std::string& str)
+{
+	std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
+	return conv.from_bytes(str.c_str());
+}
+
+//wstring to string
+std::string wstring_to_string1(const std::wstring& wstr)
+{
+	setlocale(LC_ALL, "");
+	std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
+	return conv.to_bytes(wstr);
+
+}
+//wstring to string
+std::string wstring_to_string(const std::wstring& wstr)
+{
+	setlocale(LC_ALL, "");
+	std::int64_t size = wcstombs(NULL, wstr.c_str(), 0);
+	std::string desrt;
+	desrt.resize(size);
+	wcstombs(desrt.data(), wstr.c_str(), size);
+	return desrt;
+}
+
 int main()
 {
+	const std::string file = "E:/素材/2016模型vray3.6稍微大点的场景/BaiduNetdiskDownload/模型/新中式风格/6/6/5/maps/欧模网_0005.jpg";
+	std::wstring wstr1 = string_to_wstring(file);
+	//std::string u8_str = std::filesystem::path(file).u8string();
+	//std::wstring wstr2 = string_to_wstring1(u8_str);
+
+	std::string str_file1 = wstring_to_string1(wstr1);
+	//std::string str_file2 = wstring_to_string1(wstr2);
 
 }
