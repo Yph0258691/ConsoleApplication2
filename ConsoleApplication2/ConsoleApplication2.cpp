@@ -3562,8 +3562,33 @@
 //	}
 //}
 
-#include <iostream>
+//#include <iostream>
+//#include <fstream>
+//
+//int main()
+//{
+//	std::ifstream file_;
+//	if (file_.is_open()) {
+//		return 0;
+//	}
+//
+//	file_.open("E:/PhysCamera004.vrscene", std::ios::binary);
+//	std::string data;
+//	file_.seekg(0, std::ios::end);
+//	int current_size = file_.tellg();
+//	file_.seekg(0, std::ios::beg);
+//	data.resize(current_size);
+//	file_.read(&data[0], data.size());
+//	if (file_.peek() == EOF) {
+//		std::cout << "末尾" << std::endl;
+//	}
+//
+//	if (file_.is_open()) {
+//		file_.close();
+//	}
+//}
 
+#include <iostream>
 int main()
 {
 
