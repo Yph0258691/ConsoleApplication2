@@ -3469,8 +3469,71 @@
 //	}
 //}
 
+//#include <iostream>
+//#include "server_http.hpp"
+//#include "handler.hpp"
+//
+//using namespace ShiyanlouWeb;
+//
+//int main() {
+//	// HTTP 服务运行在 12345 端口，并启用四个线程
+//	Server<HTTP> server(12345);
+//	start_server<Server<HTTP>>(server);
+//	return 0;
+//}
+
+//#include <iostream>
+//#include <thread>
+//#include <chrono>
+//#include <mutex>
+//
+//std::mutex g_display_mutex;
+//
+//void foo()
+//{
+//	std::thread::id this_id = std::this_thread::get_id();
+//
+//	g_display_mutex.lock();
+//	std::cout << "thread " << this_id << " sleeping...\n";
+//	g_display_mutex.unlock();
+//
+//	std::this_thread::sleep_for(std::chrono::seconds(1));
+//}
+//
+//int main()
+//{
+//	std::thread t1([]() {
+//		std::thread::id this_id = std::this_thread::get_id();
+//
+//		std::cout << "thread " << this_id << " sleeping...\n";
+//
+//		});
+//
+//	std::cout << t1.get_id() << std::endl;
+//
+//}
+
+//#include <map>
+//
+//int main()
+//{
+//    std::map<int, int>map_;
+//    map_.emplace(1, 2);
+//    map_.emplace(2, 3);
+//    map_.emplace(3, 4);
+//
+//    std::map<int, int>::iterator iter_begin = map_.begin();
+//    for (; iter_begin != map_.end();){
+//        if (iter_begin->second ==3){
+//            iter_begin = map_.erase(iter_begin);
+//        }else {
+//            ++iter_begin;
+//        }
+//    }
+//}
 
 #include <iostream>
+
 int main()
 {
 
