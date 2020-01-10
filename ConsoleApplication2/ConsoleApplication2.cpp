@@ -3517,19 +3517,49 @@
 //
 //int main()
 //{
-//    std::map<int, int>map_;
-//    map_.emplace(1, 2);
-//    map_.emplace(2, 3);
-//    map_.emplace(3, 4);
+//	std::map<int, int>map_;
+//	map_.emplace(1, 2);
+//	map_.emplace(2, 3);
+//	map_.emplace(3, 4);
 //
-//    std::map<int, int>::iterator iter_begin = map_.begin();
-//    for (; iter_begin != map_.end();){
-//        if (iter_begin->second ==3){
-//            iter_begin = map_.erase(iter_begin);
-//        }else {
-//            ++iter_begin;
-//        }
-//    }
+//	std::map<int, int>::iterator iter_begin = map_.begin();
+//	for (; iter_begin != map_.end();) {
+//		if (iter_begin->second == 3) {
+//			iter_begin = map_.erase(iter_begin);
+//		}
+//		else {
+//			++iter_begin;
+//		}
+//	}
+//}
+
+//#include <iostream>
+//#include <fstream>
+//
+//int main()
+//{
+//	std::ifstream file_;
+//	if (file_.is_open()) {
+//		return 0;
+//	}
+//
+//	file_.open("E:/PhysCamera004.vrscene", std::ios::binary);
+//	std::string data;
+//	data.resize(1024 * 4);
+//	file_.read(&data[0], data.size());
+//	//gcount()获取读到的字节数
+//	std::int64_t read_n = file_.gcount();
+//	if (read_n < 1024 * 4){
+//		data.resize(read_n);
+//	}
+//
+//	if (file_.peek() ==EOF){
+//		std::cout << "末尾" << std::endl;
+//	}
+//
+//	if (file_.is_open()){
+//		file_.close();
+//	}
 //}
 
 #include <iostream>
