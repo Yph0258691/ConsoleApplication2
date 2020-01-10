@@ -3650,7 +3650,7 @@ std::wstring string_to_wstring(const std::string& str)
 	return w_str;
 }
 
-//转发崩溃（string） (u8string可以)
+//（string转换崩溃） (u8string转换成功可以)
 std::wstring string_to_wstring1(const std::string& str)
 {
 	std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
@@ -3676,11 +3676,27 @@ std::string wstring_to_string(const std::wstring& wstr)
 	return desrt;
 }
 
+std::string string_to_u8string(const std::string& str)
+{
+	setlocale(LC_ALL, "PL_pl.UTF-8"); 
+	try
+	{
+		return std::filesystem::path(str).u8string();
+	}
+	catch (std::exception &e)
+	{
+		std::string msg = e.what();
+		return "";
+	}
+
+}
+
 int main()
 {
-	const std::string file = "E:/素材/2016模型vray3.6稍微大点的场景/BaiduNetdiskDownload/模型/新中式风格/6/6/5/maps/欧模网_0005.jpg";
+	//const std::string file = "E:/素材/2016模型vray3.6稍微大点的场景/BaiduNetdiskDownload/模型/新中式风格/6/6/5/maps/欧模网_0005.jpg";
+	const std::string file = "E:/素材/2016模型vray3.6稍微大点的场景";
 	std::wstring wstr1 = string_to_wstring(file);
-	//std::string u8_str = std::filesystem::path(file).u8string();
+	std::string u8_str = string_to_u8string(file);
 	//std::wstring wstr2 = string_to_wstring1(u8_str);
 
 	std::string str_file1 = wstring_to_string1(wstr1);
