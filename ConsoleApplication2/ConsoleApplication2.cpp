@@ -4003,6 +4003,86 @@
 //{
 //	singleton<A>::getInstance().display();
 //}
+//
+//#include <iostream>
+//#include <mutex>
+//class A
+//{
+//public:
+//	static A& getInstance() {
+//		static std::once_flag flag;
+//		std::call_once(flag, []() {
+//			instance_.reset(new A);
+//			});
+//
+//		return *instance_.get();
+//	}
+//
+//	~A() { std::cout << "~A()" << std::endl; }
+//	void display() { std::cout << "A" << std::endl; }
+//private:
+//	A() {
+//		std::cout << "A" << std::endl;
+//	};
+//	A(const A&) = delete;
+//	A& operator=(const A&) = delete;
+//private:
+//	static std::unique_ptr<A>instance_;
+//};
+//
+//std::unique_ptr<A>A::instance_ = nullptr;
+//
+//class B
+//{
+//public:
+//	static B& getInstance() {
+//		//c++11是线性安全的
+//		static B instance;
+//		return instance;
+//	}
+//
+//	~B()
+//	{
+//		std::cout << "~B()" << std::endl;
+//	}
+//	
+//	void display()
+//	{
+//		std::cout << "bbbb" << std::endl;
+//	}
+//private:
+//	B()
+//	{
+//		std::cout << "B()" << std::endl;
+//	}
+//	B(const B&) = delete;
+//	B& operator=(const B&) = delete;
+//};
+//
+//int main()
+//{
+//
+//	{
+//		{
+//			B::getInstance().display();
+//			int i = 100;
+//		}
+//
+//		{
+//			B::getInstance().display();
+//			int i = 100;
+//		}
+//	}
+//	{
+//		{
+//			A::getInstance().display();
+//			int i = 100;
+//		}
+//
+//	}
+//
+//	int i = 100;
+//}
 
 #include <iostream>
 
