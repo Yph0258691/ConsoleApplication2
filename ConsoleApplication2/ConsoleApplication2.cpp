@@ -3626,80 +3626,204 @@
 //
 //}
 
+//#include <iostream>
+//#include <windows.h>
+//#include <string>
+//#include <vector>
+//#include <filesystem>
+//#include <map>
+//
+//#include <locale>
+//#include <codecvt>
+//#pragma warning(disable:4996)
+//
+//
+////string_to_wstring
+//std::wstring string_to_wstring(const std::string& str)
+//{
+//	setlocale(LC_ALL, "");
+//	std::int64_t size = mbstowcs(NULL, str.c_str(), 0);
+//	std::wstring w_str;
+//	w_str.resize(size);
+//
+//	mbstowcs(w_str.data(), str.c_str(), str.size());
+//	return w_str;
+//}
+//
+////（string转换崩溃） (u8string转换成功可以)
+//std::wstring string_to_wstring1(const std::string& str)
+//{
+//	std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
+//	return conv.from_bytes(str.c_str());
+//}
+//
+////wstring to string
+//std::string wstring_to_string1(const std::wstring& wstr)
+//{
+//	setlocale(LC_ALL, "");
+//	std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
+//	return conv.to_bytes(wstr);
+//
+//}
+////wstring to string
+//std::string wstring_to_string(const std::wstring& wstr)
+//{
+//	setlocale(LC_ALL, "");
+//	std::int64_t size = wcstombs(NULL, wstr.c_str(), 0);
+//	std::string desrt;
+//	desrt.resize(size);
+//	wcstombs(desrt.data(), wstr.c_str(), size);
+//	return desrt;
+//}
+//
+//std::string string_to_u8string(const std::string& str)
+//{
+//	setlocale(LC_ALL, "PL_pl.UTF-8"); 
+//	try
+//	{
+//		return std::filesystem::path(str).u8string();
+//	}
+//	catch (std::exception &e)
+//	{
+//		std::string msg = e.what();
+//		return "";
+//	}
+//
+//}
+//
+//int main()
+//{
+//	const std::string file = "E:/素材/2016模型vray3.6稍微大点的场景/BaiduNetdiskDownload/模型/新中式风格/6/6/5/maps/欧模网_0005.jpg";
+//	std::wstring wstr1 = string_to_wstring(file);
+//	std::string u8_str = string_to_u8string(file);
+//	//std::wstring wstr2 = string_to_wstring1(u8_str);
+//
+//	std::string str_file1 = wstring_to_string1(wstr1);
+//	//std::string str_file2 = wstring_to_string1(wstr2);
+//
+//}
+
+
+//#include <iostream>
+//#include<string>
+//#include <locale>
+//#include <codecvt>
+//#include <sstream>
+//#include <iomanip>
+//#pragma warning(disable:4996)
+//
+//std::wstring string_to_wstring(const std::string& str)
+//{
+//	setlocale(LC_ALL, "");
+//	std::int64_t size = mbstowcs(NULL, str.c_str(), 0);
+//	std::wstring w_str;
+//	w_str.resize(size);
+//
+//	//算出代转wstring字节
+//	mbstowcs(w_str.data(), str.c_str(), str.size());
+//	return w_str;
+//}
+//
+//std::string wstring_u8string(const std::wstring& wstr)
+//{
+//	std::wstring_convert<std::codecvt_utf8<wchar_t, 0x10ffff, std::codecvt_mode::little_endian>> con;
+//	return con.to_bytes(wstr);
+//}
+//
+//std::string wstring_to_string(const std::wstring& wstr)
+//{
+//	setlocale(LC_ALL, "");
+//	//算出代转string字节
+//	std::int64_t size = wcstombs(NULL, wstr.c_str(), 0);
+//	std::string desrt;
+//	desrt.resize(size);
+//	wcstombs(desrt.data(), wstr.c_str(), size);
+//	return desrt;
+//}
+//
+//bool is_valid_utf8(const char* string)
+//{
+//	if (!string)
+//	{
+//		return true;
+//	}
+//
+//	const unsigned char* bytes = (const unsigned char*)string;
+//	unsigned int cp;
+//	int num;
+//
+//	while (*bytes != 0x00) {
+//		if ((*bytes & 0x80) == 0x00) {
+//			// U+0000 to U+007F 
+//			cp = (*bytes & 0x7F);
+//			num = 1;
+//		}
+//		else if ((*bytes & 0xE0) == 0xC0) {
+//			// U+0080 to U+07FF 
+//			cp = (*bytes & 0x1F);
+//			num = 2;
+//		}
+//		else if ((*bytes & 0xF0) == 0xE0) {
+//			// U+0800 to U+FFFF 
+//			cp = (*bytes & 0x0F);
+//			num = 3;
+//		}
+//		else if ((*bytes & 0xF8) == 0xF0) {
+//			// U+10000 to U+10FFFF 
+//			cp = (*bytes & 0x07);
+//			num = 4;
+//		}
+//		else
+//			return false;
+//
+//		bytes += 1;
+//		for (int i = 1; i < num; ++i) {
+//			if ((*bytes & 0xC0) != 0x80)
+//				return false;
+//			cp = (cp << 6) | (*bytes & 0x3F);
+//			bytes += 1;
+//		}
+//
+//		if ((cp > 0x10FFFF) ||
+//			((cp >= 0xD800) && (cp <= 0xDFFF)) ||
+//			((cp <= 0x007F) && (num != 1)) ||
+//			((cp >= 0x0080) && (cp <= 0x07FF) && (num != 2)) ||
+//			((cp >= 0x0800) && (cp <= 0xFFFF) && (num != 3)) ||
+//			((cp >= 0x10000) && (cp <= 0x1FFFFF) && (num != 4)))
+//			return false;
+//	}
+//
+//	return true;
+//}
+//
+//std::string to_string_with_precision(const double a_value,int precison)
+//{
+//	std::ostringstream out;
+//	out << std::setprecision(precison) << a_value;
+//	return out.str();
+//}
+//
+//int main()
+//{
+//	std::string str = "E:/素材/2016模型vray3.6稍微大点的场景/BaiduNetdiskDownload/模型/新中式风格/6/6/5/maps/欧模网_0232.jpg";
+//	std::wstring wstr = string_to_wstring(str);
+//	std::string srcStr = wstring_to_string(wstr);
+//
+//	double persent = 0.12333789320;
+//	std::string ssss = to_string_with_precision(persent * 100,4);
+//	char buff[20] = { 0 };
+//	snprintf(buff, sizeof(buff), "%0.2f", persent * 100);
+//	std::string buffer(buff);
+//	//std::string utf8Str = wstring_u8string(wstr);
+//
+//	//if (is_valid_utf8(utf8Str.c_str())){
+//	//	int i =100;
+//	//}
+//}
+
 #include <iostream>
-#include <windows.h>
-#include <string>
-#include <vector>
-#include <filesystem>
-#include <map>
-
-#include <locale>
-#include <codecvt>
-#pragma warning(disable:4996)
-
-
-//string_to_wstring
-std::wstring string_to_wstring(const std::string& str)
-{
-	setlocale(LC_ALL, "");
-	std::int64_t size = mbstowcs(NULL, str.c_str(), 0);
-	std::wstring w_str;
-	w_str.resize(size);
-
-	mbstowcs(w_str.data(), str.c_str(), str.size());
-	return w_str;
-}
-
-//（string转换崩溃） (u8string转换成功可以)
-std::wstring string_to_wstring1(const std::string& str)
-{
-	std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
-	return conv.from_bytes(str.c_str());
-}
-
-//wstring to string
-std::string wstring_to_string1(const std::wstring& wstr)
-{
-	setlocale(LC_ALL, "");
-	std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
-	return conv.to_bytes(wstr);
-
-}
-//wstring to string
-std::string wstring_to_string(const std::wstring& wstr)
-{
-	setlocale(LC_ALL, "");
-	std::int64_t size = wcstombs(NULL, wstr.c_str(), 0);
-	std::string desrt;
-	desrt.resize(size);
-	wcstombs(desrt.data(), wstr.c_str(), size);
-	return desrt;
-}
-
-std::string string_to_u8string(const std::string& str)
-{
-	setlocale(LC_ALL, "PL_pl.UTF-8"); 
-	try
-	{
-		return std::filesystem::path(str).u8string();
-	}
-	catch (std::exception &e)
-	{
-		std::string msg = e.what();
-		return "";
-	}
-
-}
 
 int main()
 {
-	//const std::string file = "E:/素材/2016模型vray3.6稍微大点的场景/BaiduNetdiskDownload/模型/新中式风格/6/6/5/maps/欧模网_0005.jpg";
-	const std::string file = "E:/素材/2016模型vray3.6稍微大点的场景";
-	std::wstring wstr1 = string_to_wstring(file);
-	std::string u8_str = string_to_u8string(file);
-	//std::wstring wstr2 = string_to_wstring1(u8_str);
-
-	std::string str_file1 = wstring_to_string1(wstr1);
-	//std::string str_file2 = wstring_to_string1(wstr2);
 
 }
