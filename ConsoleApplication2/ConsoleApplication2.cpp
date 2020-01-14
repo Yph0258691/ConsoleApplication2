@@ -4084,6 +4084,37 @@
 //	int i = 100;
 //}
 
+//#include <iostream>
+//#include <string>
+//#include <string_view>
+//
+//void init(std::string& str, int value)
+//{
+//	std::string str1 = std::move(str);
+//	int x = std::move(value);
+//	std::cout << str1 << std::endl;
+//}
+//
+//void init1(std::string_view str, int value)
+//{
+//	std::string str1(str);
+//	int x = std::move(value);
+//	std::cout << str1 << std::endl;
+//}
+//
+//int main()
+//{
+//	std::string test_str = "1111";
+//	int value = 100;
+//	//init(test_str, value);
+//	init1(test_str, value);
+//
+//	int x = value;
+//
+//	  //test_str为空 错误用法
+//	std::string sss = test_str;
+//}
+
 #include <iostream>
 
 int main()
