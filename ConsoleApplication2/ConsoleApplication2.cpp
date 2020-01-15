@@ -4182,8 +4182,29 @@
 //}
 
 #include <iostream>
+#include <string>
+
+void display() //throw()<=> noexcept //被系统捕捉到后,就直接abort掉了,表示不抛出任务任何异常
+{
+	try
+	{
+		throw "11";
+	}
+	catch (...) {
+
+	}
+
+}
 
 int main()
 {
+	try
+	{
+		display();
+	}
+	catch (...)
+	{
+		std::string ss = "111";
+	}
 
 }
