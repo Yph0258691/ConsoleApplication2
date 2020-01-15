@@ -77,8 +77,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\coding\octopus_third_party\sqlite3;E:\coding\yinpinghua\octopus_third_party\fmt\include;E:\coding\octopus_third_party\;E:\coding\octopus_third_party\cppRedis\;E:\coding\octopus_third_party\cppRedis\includes;E:\coding\octopus_third_party\boost_1_69_0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\coding\octopus_third_party\sqlite3;E:\coding\yinpinghua\octopus_third_party\fmt\Debug;E:\coding\octopus_third_party\cppRedis\lib\Debug;E:\coding\octopus_third_party\boost_1_69_0\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\coding\octopus_third_party\opencv\include;E:\coding\octopus_third_party\image_magick\include;E:\coding\octopus_third_party\sqlite3;E:\coding\yinpinghua\octopus_third_party\fmt\include;E:\coding\octopus_third_party\;E:\coding\octopus_third_party\cppRedis\;E:\coding\octopus_third_party\cppRedis\includes;E:\coding\octopus_third_party\boost_1_69_0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\coding\octopus_third_party\opencv\static_lib\Release;E:\coding\octopus_third_party\opencv\static_lib\Debug;E:\coding\octopus_third_party\sqlite3;E:\coding\yinpinghua\octopus_third_party\fmt\Debug;E:\coding\octopus_third_party\cppRedis\lib\Debug;E:\coding\octopus_third_party\boost_1_69_0\lib;$(LibraryPath)</LibraryPath>
     <SourcePath>$(SourcePath)</SourcePath>
     <OutDir>../build/debug/bin/</OutDir>
     <IntDir>../build/debug/obj/</IntDir>
@@ -117,12 +117,12 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNING.;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opencv_core411d.lib;opencv_imgcodecs411d.lib;opencv_imgproc411d.lib;opencv_highgui411d.lib;IlmImfd.lib;ippiwd.lib;ittnotifyd.lib;libjasperd.lib;libpngd.lib;libjpeg-turbod.lib;libtiffd.lib;libwebpd.lib;quircd.lib;zlibd.lib;ippicvmt.lib;sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -164,7 +164,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
-      <AdditionalDependencies>fmtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fmtd.lib;CORE_RL_Magick++_.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

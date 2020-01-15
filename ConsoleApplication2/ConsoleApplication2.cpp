@@ -4181,30 +4181,100 @@
 //	double sf = double(size1) / size;
 //}
 
+//#include <iostream>
+//#include <string>
+//
+//void display() //throw()<=> noexcept //被系统捕捉到后,就直接abort掉了,表示不抛出任务任何异常
+//{
+//	try
+//	{
+//		throw "11";
+//	}
+//	catch (...) {
+//
+//	}
+//
+//}
+//
+//int main()
+//{
+//	try
+//	{
+//		display();
+//	}
+//	catch (...)
+//	{
+//		std::string ss = "111";
+//	}
+//
+//}
+
+
+//#include<iostream>
+//#include <filesystem>
+//#include <opencv2/imgcodecs.hpp>
+//#include <opencv2/imgproc.hpp>
+//#include <opencv2/highgui.hpp>
+//
+//const static int g_min_width = 128;
+//const static int g_min_height = 128;
+//
+//bool resize_input_image(const std::string& input_image, const std::string& output_image, int width, int height)
+//{
+//	const std::string output_file = output_image;
+//	const std::string input_file = input_image;
+//	try {
+//		const cv::Mat image = cv::imread(input_image);
+//		if (image.empty()) {
+//			std::error_code ec;
+//			std::filesystem::copy(input_file, output_file, ec);
+//			if (ec) {
+//				return false;
+//			}
+//		}
+//
+//		const float ratio_w = image.cols / float(width);
+//		const float ratio_h = image.rows / float(height);
+//
+//		if (image.rows > g_min_height&& image.cols > g_min_width&& ratio_w > 1.f && ratio_h > 1.0f) {//分辨率高的才改动
+//			cv::Mat out_image;
+//
+//			float ratio = 0.5f;//todo更好的改变分辨率的方法
+//			if (ratio_w > 4.f && ratio_h > 4.0f) {
+//				ratio /= 2;
+//			}
+//			cv::resize(image, out_image, cv::Size(int(image.cols * ratio), int(image.rows * ratio)), cv::INTER_CUBIC);
+//			return cv::imwrite(output_image, out_image);
+//		}
+//		else {//直接复制
+//			std::error_code ec;
+//			std::filesystem::copy(input_file, output_file);
+//			if (ec) {
+//				return false;
+//			}
+//		}
+//	}
+//	catch (...) {
+//		std::error_code ec;
+//		std::filesystem::copy(input_file, output_file, ec);
+//		if (ec) {
+//			return false;
+//		}
+//	}
+//
+//	return true;
+//
+//}
+//int main()
+//{
+//	std::string in = "E:/itrees-02-leaf_002.jpg";
+//	std::string out = "E:/123456.jpg";
+//	resize_input_image(in, out, 10, 20);
+//}
+
 #include <iostream>
-#include <string>
-
-void display() //throw()<=> noexcept //被系统捕捉到后,就直接abort掉了,表示不抛出任务任何异常
-{
-	try
-	{
-		throw "11";
-	}
-	catch (...) {
-
-	}
-
-}
 
 int main()
 {
-	try
-	{
-		display();
-	}
-	catch (...)
-	{
-		std::string ss = "111";
-	}
 
 }
