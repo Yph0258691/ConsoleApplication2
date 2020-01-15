@@ -4116,8 +4116,52 @@
 //}
 
 #include <iostream>
+#include <memory>
+
+class B;
+class A:public std::enable_shared_from_this<A>
+{
+public:
+	A() { 
+	
+		std::cout << "A()" << std::endl;
+	}
+	
+	void init()
+	{
+		//这地方不能放在构造函数中执行
+		ptr_ = std::make_shared<B>(shared_from_this());
+	}
+
+	~A() { std::cout << "~A()" << std::endl; }
+	void displayA()
+	{
+		std::cout << "A" << std::endl;
+	}
+private:
+	std::shared_ptr<B> ptr_;
+};
+
+class B
+{
+public:
+	B(std::shared_ptr<A> ptr) :ptr_() { 
+		std::cout << "B()" << std::endl; }
+	~B() { std::cout << "~B()" << std::endl; }
+	void displayB()
+	{
+		ptr_.lock()->displayA();
+		std::cout << "B" << std::endl;
+	}
+private:
+	// std::shared_ptr<A> ptr_;	  //内存泄漏
+	std::weak_ptr<A> ptr_;
+};
 
 int main()
 {
-
+	std::shared_ptr<A> ptr = std::make_shared<A>();
+	ptr->init();
+	std::shared_ptr<B> ptr1 = std::make_shared<B>(ptr);
+	ptr1->displayB();
 }
