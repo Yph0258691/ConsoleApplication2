@@ -4333,14 +4333,24 @@
 //	return 0;
 //}
 
+//#include <iostream>
+//#include <sstream>
+////字符串流呵呵
+//int main()
+//{
+//	std::stringstream ss;
+//	int i = 100;
+//	ss << i;
+//
+//	std::string str = ss.str();
+//}
+
 #include <iostream>
-#include <sstream>
-//字符串流呵呵
+#include <chrono>
+
 int main()
 {
-	std::stringstream ss;
-	int i = 100;
-	ss << i;
-
-	std::string str = ss.str();
+	std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
+	auto times = std::chrono::duration_cast<std::chrono::seconds>(now.time_since_epoch());
+	std::int64_t t = times.count();
 }
