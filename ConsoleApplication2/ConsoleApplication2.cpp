@@ -4300,14 +4300,47 @@
 //	return 0;
 //}
 
-#include <tuple>
+// #include <tuple>
+// #include <iostream>
+// #include "json.hpp"
+// 
+// int main() 
+// {
+// 	nlohmann::json  js = nlohmann::json::parse("{ \"happy\": true, \"pi\": 3.141 }");
+// 
+// 	bool flag = js["happy"];
+// 	float pi = js["pi"];
+// }
+
+//#include <iostream>
+//#include <string>
+//#include <fstream>
+//#include <sstream>
+//
+//int main()
+//{
+//	std::ifstream file("E:/PhysCamera004.vrscene", std::ios::binary);
+//	int i = 100;
+//	std::stringstream ss;
+//	if (!file.is_open()) {
+//		return 0;
+//	}
+//
+//	ss <<file.rdbuf();
+//
+//	std::string conent = ss.str();
+//
+//	return 0;
+//}
+
 #include <iostream>
-#include "json.hpp"
-
-int main() 
+#include <sstream>
+//字符串流呵呵
+int main()
 {
-	nlohmann::json  js = nlohmann::json::parse("{ \"happy\": true, \"pi\": 3.141 }");
+	std::stringstream ss;
+	int i = 100;
+	ss << i;
 
-	bool flag = js["happy"];
-	float pi = js["pi"];
+	std::string str = ss.str();
 }
