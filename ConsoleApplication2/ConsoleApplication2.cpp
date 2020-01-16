@@ -4271,10 +4271,43 @@
 //	std::string out = "E:/123456.jpg";
 //	resize_input_image(in, out, 10, 20);
 //}
+//
+//#include <iostream>
+//#include <boost/coroutine2/all.hpp>
+//
+//int main(int argc, char* argv[])
+//{
+//	{
+//		boost::coroutines2::asymmetric_coroutine<void>::pull_type sub([&](boost::coroutines2::asymmetric_coroutine<void>::push_type& father) {
+//			std::cout << "1";
+//			father();
+//			std::cout << "2";
+//			father();
+//			std::cout << "3";
+//			father();
+//			std::cout << "4";
+//
+//			});
+//		while (sub)
+//		{
+//			std::cout << "-";
+//			sub();
+//		}
+//	}
+//
+//	std::cout << "\nDone" << std::endl;
+//
+//	return 0;
+//}
 
+#include <tuple>
 #include <iostream>
+#include "json.hpp"
 
-int main()
+int main() 
 {
+	nlohmann::json  js = nlohmann::json::parse("{ \"happy\": true, \"pi\": 3.141 }");
 
+	bool flag = js["happy"];
+	float pi = js["pi"];
 }
