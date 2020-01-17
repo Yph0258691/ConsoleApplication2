@@ -4345,12 +4345,51 @@
 //	std::string str = ss.str();
 //}
 
+//#include <iostream>
+//#include <chrono>
+//
+//int main()
+//{
+//	std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
+//	auto times = std::chrono::duration_cast<std::chrono::seconds>(now.time_since_epoch());
+//	std::int64_t t = times.count();
+//}
+
+//#include <iostream>
+//
+//bool is_show_debug_win(int argc, char* argv[],std::string &&pamer_name)
+//{
+//	for (int i =0;i<argc;i++){
+//		if (pamer_name == argv[i]) {
+//			return true;
+//		}
+//	}
+//
+//	return false;
+//}
+//
+//int main(int argc, char* argv[])
+//{
+//	bool flag = is_show_debug_win(argc, argv,"--show_debug_tool");
+//}
+
 #include <iostream>
-#include <chrono>
+#include <string>
+#include <fstream>
+#include <sstream>
 
 int main()
 {
-	std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
-	auto times = std::chrono::duration_cast<std::chrono::seconds>(now.time_since_epoch());
-	std::int64_t t = times.count();
+    std::string str = "//s/share_cache/temp/rpc_upload/scene/Camera001_1579253049360.7z";
+    std::ifstream file(str, std::ios::binary);
+    if (!file.is_open()){
+        return 0;
+    }
+    std::stringstream stream;
+    stream << file.rdbuf();
+    std::string str1 = stream.str();
+
+    std::ofstream file_open("E:/render_temp_path/Camera001_1579253049360.7z", std::ios::binary);
+    file_open.write(str1.c_str(),str1.size());
+    file.close();
 }
