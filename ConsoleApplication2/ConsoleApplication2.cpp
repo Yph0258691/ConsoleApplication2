@@ -4478,3 +4478,29 @@
 //
 //	std::cout << time_stramp << std::endl;
 //}
+//
+//#include <iostream>
+//#include <map>
+//
+//#include <filesystem>
+////命名空间直接赋值
+//namespace fs = std::filesystem;
+//
+//
+//int main()
+//{
+//	std::string str = "11111我是好热闹";
+//	std::string strr = fs::path(str).u8string();
+//
+//	std::map<int, int>m = { {1,2},{2,3},{4,5} };
+//
+//	//大坑，直接返回哦0;
+//	int i = m[5];
+//}
+
+#include <iostream>
+
+int main()
+{
+
+}
