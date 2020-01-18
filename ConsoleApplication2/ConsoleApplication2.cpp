@@ -4429,9 +4429,52 @@
 //    display(std::move(str));
 //}
 
-#include <iostream>
+//#include <iostream>
+//#include <chrono>
+//#include <sstream>
+//#include <ctime>
+//#pragma warning(disable:4996)
+//
+//std::wstring milltimewstr_from_time_stamp(int64_t timestamp, std::wstring format)
+//{
+//	int64_t milli = timestamp + (int64_t)8 * 60 * 60 * 1000;//此处转化为东八区北京时间，如果是其它时区需要按需求修改
+//	auto mTime = std::chrono::milliseconds(milli);
+//	auto tp = std::chrono::time_point<std::chrono::system_clock, std::chrono::milliseconds>(mTime);
+//	auto tt = std::chrono::system_clock::to_time_t(tp);
+//	std::tm* now = std::gmtime(&tt);
+//	std::wstring str;
+//	str.resize(64);
+//	try
+//	{
+//		std::wcsftime(&str[0], str.size(), format.c_str(), now);
+//	}
+//	catch (...)
+//	{
+//		return str;
+//	}
+//
+//	return str;
+//}
+//
+//int main()
+//{
+//	std::chrono::steady_clock::time_point tp = std::chrono::steady_clock::now();
+//
+//	auto tp1 = std::chrono::duration_cast<std::chrono::milliseconds>(tp.time_since_epoch());
+//	std::wstring wst = milltimewstr_from_time_stamp(tp1.count(), L"Y-%M-%D %H:%M:%S");
+//}
 
-int main()
-{
-
-}
+//#include <iostream>
+//#include <chrono>
+//
+//int main()
+//{
+//	//使用别名
+//	//解决命名空间过长问题
+//	using timer = std::chrono::system_clock;
+//	using seconds = std::chrono::seconds;
+//
+//	std::int64_t time_stramp = std::chrono::duration_cast<seconds>(timer::now().time_since_epoch()).count();
+//
+//	std::cout << time_stramp << std::endl;
+//}
