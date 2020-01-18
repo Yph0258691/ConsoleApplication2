@@ -4373,23 +4373,65 @@
 //	bool flag = is_show_debug_win(argc, argv,"--show_debug_tool");
 //}
 
+//#include <iostream>
+//#include <string>
+//#include <fstream>
+//#include <sstream>
+//
+//int main()
+//{
+//    std::string str = "//s/share_cache/temp/rpc_upload/scene/Camera001_1579253049360.7z";
+//    std::ifstream file(str, std::ios::binary);
+//    if (!file.is_open()){
+//        return 0;
+//    }
+//    std::stringstream stream;
+//    stream << file.rdbuf();
+//    std::string str1 = stream.str();
+//
+//    std::ofstream file_open("E:/render_temp_path/Camera001_1579253049360.7z", std::ios::binary);
+//    file_open.write(str1.c_str(),str1.size());
+//    file.close();
+//}
+
+//#include <iostream>
+//#include <sstream>
+//#include <string>
+//#include <iomanip>
+//std::string to_string_with_precision(const double a_value, int precison)
+//{
+//	std::ostringstream out;
+//	//保留小数点后几位，会四舍五入
+//	out << std::fixed << std::setprecision(precison)<< a_value;
+//	return out.str();
+//}
+//
+//
+//double twodec(double n) { return floor(n * 100 + 0.5) / 100; }
+//int main()
+//{
+//	std::string str = to_string_with_precision(2.1255, 2);
+//
+//}
+
+//#include <iostream>
+//#include <string>
+//
+//void display( std::string&& str)
+//{
+//    std::cout << str << std::endl;
+//}
+//
+//int main()
+//{
+//    std::string str = "11";
+//
+//    display(std::move(str));
+//}
+
 #include <iostream>
-#include <string>
-#include <fstream>
-#include <sstream>
 
 int main()
 {
-    std::string str = "//s/share_cache/temp/rpc_upload/scene/Camera001_1579253049360.7z";
-    std::ifstream file(str, std::ios::binary);
-    if (!file.is_open()){
-        return 0;
-    }
-    std::stringstream stream;
-    stream << file.rdbuf();
-    std::string str1 = stream.str();
 
-    std::ofstream file_open("E:/render_temp_path/Camera001_1579253049360.7z", std::ios::binary);
-    file_open.write(str1.c_str(),str1.size());
-    file.close();
 }
