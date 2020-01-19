@@ -4498,8 +4498,66 @@
 //	int i = m[5];
 //}
 
-#include <iostream>
+//#include <iostream>
+//#include <string>
+//#include "itoa.hpp"
+//
+//int main()
+//{
+//	std::string str = "123我是好人";
+//	std::string size="";
+//	itoa_fwd((int)str.size(), size.data());
+//}
 
+
+///*****************参数包使用**********************************/
+//#include <iostream>
+//
+////张开函数啦
+//template<typename T>
+//void display1(T a)
+//{
+//	std::cout << a << std::endl;
+//}
+//
+//template<typename T = void>
+//void display1()
+//{
+//	std::cout << "void" << std::endl;
+//}
+//
+////逗号展开函数
+//template<typename T=void,typename ... Args>
+//void display1(T first ,Args... args)
+//{
+//	std::cout << first << std::endl;
+//	display1<T>(args...);
+//}
+//
+//template<typename T = void, typename... Args>
+//void display(Args ... args)
+//{
+//	if (std::is_void_v<T>) {
+//		display1<T>();
+//	}
+//	else if (std::is_integral_v<T>)
+//	{
+//		std::cout << "int" << std::endl;
+//		display1<T>(args...);
+//	}
+//}
+//
+//int main()
+//{
+//	int a = 10;
+//	int b = 100;
+//	int c = 200;
+//	display<>();//支持
+//
+//	display<int>(a,b,c);
+//}
+
+#include <iostream>
 int main()
 {
 
