@@ -4683,11 +4683,13 @@
 #include <vector>
 #include <filesystem>
 
-
 int main()
 {
 	std::string path = "E:/素材/2018场景/1.max";
 
+	std::string file_name = std::filesystem::path(path).filename().string();  //文件名
+	std::string stem = std::filesystem::path(path).stem().string();	//文件名 的前缀
+	std::string suffix = std::filesystem::path(path).extension().string(); //文件名的后缀
 	//获取这个:E:/素材/2018场景
-	std::string parent_path = std::filesystem::path(path).parent_path().string();
+	std::string parent_path = std::filesystem::path(path).parent_path().string();  //父路径
 }
