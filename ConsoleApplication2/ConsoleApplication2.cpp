@@ -1338,6 +1338,7 @@
 //#include <vector>
 //#include <list>
 //#include <string>
+//#include <algorithm>
 //struct MyStruct
 //{
 //	int ver = 0;
@@ -1359,15 +1360,15 @@
 //	int size = wcslen(w_str.c_str());
 //
 //	std::wstring is = std::to_wstring(100);
-//	std::list<MyStruct>vecs;
+//	std::vector<MyStruct>vecs;
 //	for (int i = 0; i < 5; i++) {
 //		MyStruct s;
 //		s.ver = i;
 //		vecs.push_back(s);
 //	}
 //
-//	vecs.sort([](const MyStruct& x, const MyStruct& y)->bool {return x.ver > y.ver; });
-//	//sort(vecs.begin(), vecs.end(), [](const MyStruct& x, const MyStruct& y)->bool{return x.ver >y.ver;});
+//	//vecs.sort([](const MyStruct& x, const MyStruct& y)->bool {return x.ver > y.ver; });
+//	sort(vecs.begin(), vecs.end(), [](const MyStruct& x, const MyStruct& y)->bool{return x.ver >y.ver;});
 //	int i = 10;
 //}
 
@@ -4557,7 +4558,129 @@
 //	display<int>(a,b,c);
 //}
 
+//#include <iostream>
+//#include <vector>
+//
+//int main()
+//{
+//	std::vector<int> vec = {1,2,3,4,5,6};
+//	int size = vec.size();
+//
+//	for (int i =0;i< size;i++){
+//		vec.erase(vec.begin());
+//	}
+//}
+
+//#include <iostream>
+//#include <filesystem>
+//#include <algorithm>
+//template<typename T>
+//void display1(T a)
+//{
+//	std::cout << a << std::endl;
+//}
+//
+//void display1()
+//{
+//	std::cout << "void" << std::endl;
+//}
+//
+//template<typename T = void, typename ... Args>
+//void display1(T first, Args... args)
+//{
+//	std::cout << first << std::endl;
+//	display1<T>(args...);
+//}
+//
+//template<typename T=void,typename ...Args>
+//void display(Args ...args)
+//{
+//	if (std::is_void_v<T>){
+//		display1();
+//	}else if (std::is_integral_v<T>){
+//		std::cout << "int" << std::endl;
+//		display1(args...);
+//	}
+//}
+//
+//int main()
+//{
+//	std::string str = "JPG";
+//	transform(str.begin(), str.end(), str.begin(), ::tolower);
+//	if (std::size_t pos = str.rfind("\\"); std::string::npos != pos) {
+//		std::string str11 = str.substr(0, pos);
+//	}
+//
+//	display();
+//
+//	int a = 1;
+//	int b = 2;
+//
+//	display<int>(a, b);
+//}
+
+//#include <filesystem>
+//#include <string>
+//#include <windows.h>
+//#include <codecvt>  // for codecvt_utf8_utf16
+//#include <locale>   // for wstring_convert
+//#include <cinatra/nlohmann_json.hpp>
+//
+//#ifdef _MSC_VER
+//#pragma warning(disable:4996)
+//#endif
+//
+//
+//std::wstring string_to_string(const std::string& str)
+//{
+//	setlocale(LC_ALL, "");
+//	std::int64_t size = mbstowcs(NULL, str.c_str(), 0);
+//	std::wstring w_str;
+//	w_str.resize(size);
+//
+//	//算出代转wstring字节
+//	mbstowcs(w_str.data(), str.c_str(), str.size());
+//	return w_str;
+//}
+//
+//
+//int main()
+//{
+//	std::string dest_path_ = "E:/render_temp_path/智网1172";
+//	if (!std::filesystem::exists(dest_path_)) {
+//		int i = 100;
+//	}
+//
+//	nlohmann::json arr = nlohmann::json::array();
+//
+//	for (int i =0;i<1;i++){
+//		nlohmann::json js;
+//		nlohmann::json temp_arr = nlohmann::json::array();
+//		for (int i = 1; i < 3; i++)
+//		{
+//			temp_arr.push_back("aaa");
+//		}
+//
+//		
+//		js["list"] = temp_arr.dump();
+//
+//		arr.push_back(js);
+//	}
+//
+//	std::string sss = arr.dump();
+//
+//
+//	nlohmann::json jsss = nlohmann::json::parse(sss);
+//
+//	std::string i_code = jsss[0].value("code","");
+//
+//
+//    std::string str = std::filesystem::path(string_to_string("我是好人")).u8string();
+//
+//	std::string str11 = std::filesystem::u8path(str).string();
+//}
 #include <iostream>
+
 int main()
 {
 
