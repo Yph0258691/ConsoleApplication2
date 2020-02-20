@@ -4680,8 +4680,14 @@
 //	std::string str11 = std::filesystem::u8path(str).string();
 //}
 #include <iostream>
+#include <vector>
+#include <filesystem>
+
 
 int main()
 {
+	std::string path = "E:/素材/2018场景/1.max";
 
+	//获取这个:E:/素材/2018场景
+	std::string parent_path = std::filesystem::path(path).parent_path().string();
 }
