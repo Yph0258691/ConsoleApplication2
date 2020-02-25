@@ -4679,17 +4679,90 @@
 //
 //	std::string str11 = std::filesystem::u8path(str).string();
 //}
+//#include <iostream>
+//#include <vector>
+//#include <filesystem>
+//
+//int main()
+//{
+//	std::string path = "E:/素材/2018场景/1.max";
+//
+//	std::string file_name = std::filesystem::path(path).filename().string();  //文件名
+//	std::string stem = std::filesystem::path(path).stem().string();	//文件名 的前缀
+//	std::string suffix = std::filesystem::path(path).extension().string(); //文件名的后缀
+//	//获取这个:E:/素材/2018场景
+//	std::string parent_path = std::filesystem::path(path).parent_path().string();  //父路径
+//}
+
+//#include <iostream>
+//#include <string>
+//#include <string_view>
+//
+////直接为空了啊
+//void init(std::string& str, int value)
+//{
+//	std::string str1 = std::move(str);
+//	int x = std::move(value);
+//	std::cout << str1 << std::endl;
+//}
+//
+//void init1(std::string_view str, int value)
+//{
+//	std::string str1(str);
+//	int x = std::move(value);
+//	std::cout << str1 << std::endl;
+//}
+//
+//int main()
+//{
+//	std::string test_str = "1111";
+//	int value = 100;
+//	init(test_str, value);
+//	//init1(test_str, value);
+//
+//	int x = value;
+//
+//	  //test_str为空 错误用法
+//	std::string sss = test_str;
+//}
+
+//
+//#include <iostream>
+//#include <string>
+//#include <string_view>
+//
+////直接为空了啊
+//void init(std::string& str, int value)
+//{
+//	std::string str1 = std::move(str);
+//	int x = std::move(value);
+//	std::cout << str1 << std::endl;
+//}
+//
+//void init1(std::string_view str, int value)
+//{
+//	std::string str1(str);
+//	int x = std::move(value);
+//	std::cout << str1 << std::endl;
+//}
+//
+//int main()
+//{
+//	std::string test_str = "1111";
+//	int value = 100;
+//	init(test_str, value);
+//	//init1(test_str, value);
+//
+//	int x = value;
+//
+//	  //test_str为空 错误用法
+//	std::string sss = test_str;
+//}
+
+
 #include <iostream>
-#include <vector>
-#include <filesystem>
 
 int main()
 {
-	std::string path = "E:/素材/2018场景/1.max";
 
-	std::string file_name = std::filesystem::path(path).filename().string();  //文件名
-	std::string stem = std::filesystem::path(path).stem().string();	//文件名 的前缀
-	std::string suffix = std::filesystem::path(path).extension().string(); //文件名的后缀
-	//获取这个:E:/素材/2018场景
-	std::string parent_path = std::filesystem::path(path).parent_path().string();  //父路径
 }
